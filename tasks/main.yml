@@ -1,6 +1,6 @@
 ---
 
-- name: Set the Global PAT
+- name: Set the Global PATH
   when: server.extra_path != ''
   lineinfile:
     dest=/etc/environment
