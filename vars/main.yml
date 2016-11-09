@@ -32,3 +32,5 @@ server:
   sysctl:
     net_core_somaxconn: 131072
     net_ipv4_ip_local_port_range: "2000 62000"
+
+ntp_timezone: {{ server.timezone }}
