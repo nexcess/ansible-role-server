@@ -82,3 +82,4 @@
 
 - name: Install PIP
   easy_install: name=pip state=latest
+

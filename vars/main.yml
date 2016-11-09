@@ -23,3 +23,8 @@ server:
     - nexcess-scl.repo
   extra_path:
 
+ntp:
+  packages:
+    - ntp
+    - ntpdate
+
