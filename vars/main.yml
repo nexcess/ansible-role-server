@@ -7,7 +7,6 @@ server:
   codeset: UTF-8
   gpg_keys:
     - http://rpms.nexcess.net/RPM-GPG-KEY-NEXCESS
-    - http://rpms.remirepo.net/RPM-GPG-KEY-remi
   packages:
     - emacs-nox
     - git
@@ -24,10 +23,10 @@ server:
   services:
     unused: []
   pam:
-    nofile:
+    - nofile:
       - soft: 131072
       - hard: 131072
-    nproc:
+    - nproc:
       - soft: 8192
       - hard: 131072
   sysctl:
