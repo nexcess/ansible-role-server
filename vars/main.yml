@@ -2,7 +2,6 @@
 
 server:
   hostname: "{{ ansible_hostname }}"
-  timezone: America/Detroit
   charmap: en_US
   codeset: UTF-8
   gpg_keys:
@@ -32,5 +31,3 @@ server:
   sysctl:
     net_core_somaxconn: 131072
     net_ipv4_ip_local_port_range: "2000 62000"
-
-ntp_timezone: {{ server.timezone }}
