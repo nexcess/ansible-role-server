@@ -31,7 +31,7 @@
     domain=*
     limit_type=hard
     limit_item=nofile
-    value=65536
+    value={{ server.pam.nofile.hard }}
     use_max=yes
 
 - name: Bump User File Limits (Soft)
@@ -39,7 +39,7 @@
     domain=*
     limit_type=soft
     limit_item=nofile
-    value=131072
+    value={{ server.pam.nofile.soft }}
     use_max=yes
 
 - name: Bump User Proc Limits (Hard)
@@ -47,7 +47,7 @@
     domain=*
     limit_type=hard
     limit_item=nproc
-    value=131072
+    value={{ server.pam.nproc.hard }}
     use_max=yes
 
 - name: Bump User Proc Limits (Soft)
@@ -55,20 +55,20 @@
     domain=*
     limit_type=soft
     limit_item=nproc
-    value=8192
+    value={{ server.pam.nproc.soft }}
     use_max=yes
 
 - name: Update Sysctl (net.core.somaxconn)
   sysctl:
     name=net.core.somaxconn
-    value=131072
+    value={{ server.sysctl.net_core_somaxconn }}
     state=present
     ignoreerrors=yes
 
 - name: Update Sysctl (net.ipv4.ip_local_port_range)
   sysctl:
     name=net.ipv4.ip_local_port_range
-    value="2000 62000"
+    value={{ server.sysctl.net_ipv4_ip_local_port_range }}
     state=present
     ignoreerrors=yes
 

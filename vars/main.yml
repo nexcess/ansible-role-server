@@ -23,4 +23,13 @@ server:
   extra_path:
   services:
     unused: []
-
+  pam:
+    nofile:
+      - soft: 131072
+      - hard: 131072
+    nproc:
+      - soft: 8192
+      - hard: 131072
+  sysctl:
+    - net_core_somaxconn: 131072
+    - net_ipv4_ip_local_port_range: "2000 62000"
