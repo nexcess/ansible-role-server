@@ -21,9 +21,6 @@ server:
   repos:
     - nexcess.repo
   extra_path:
-
-ntp:
-  packages:
-    - ntp
-    - ntpdate
+  services:
+    unused:
 

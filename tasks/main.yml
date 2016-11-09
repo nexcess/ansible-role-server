@@ -24,7 +24,7 @@
 
 - name: Turn Off Unused Services
   service: name={{ item }} enabled=no state=stopped
-  with_items: "{{ services.unused }}"
+  with_items: "{{ server.services.unused }}"
 
 - name: Bump User File Limits (Hard)
   pam_limits:
