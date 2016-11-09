@@ -1,7 +1,7 @@
 ---
 
 server:
-  hostname: {{ ansible_hostname }}
+  hostname: "{{ ansible_hostname }}"
   timezone: America/Detroit
   charmap: en_US
   codeset: UTF-8
