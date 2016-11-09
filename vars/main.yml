@@ -20,7 +20,6 @@ server:
     - nc
   repos:
     - nexcess.repo
-    - nexcess-scl.repo
   extra_path:
 
 ntp:

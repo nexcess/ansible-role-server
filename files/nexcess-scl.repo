@@ -1,5 +1,0 @@
-[nexcess-scl]
-name=nexcess-scl
-baseurl=http://rpms.nexcess.net/el/$releasever/scl/$basearch/
-gpgkey=http://rpms.nexcess.net/RPM-GPG-KEY-NEXCESS
-enabled=1
