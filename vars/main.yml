@@ -23,10 +23,10 @@ server:
   services:
     unused: []
   pam:
-    - nofile:
+    nofile:
       - soft: 131072
       - hard: 131072
-    - nproc:
+    nproc:
       - soft: 8192
       - hard: 131072
   sysctl:
