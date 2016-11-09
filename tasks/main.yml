@@ -1,0 +1,84 @@
+---
+
+- name: Set the Global PATH
+  lineinfile:
+    dest=/etc/environment
+    state=present
+    line="PATH={{ server.extra_path }}:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
+    when server.extra_path != ''
+
+- name: Set Hostname
+  hostname: name={{ server.hostname }}
+
+- name: Install Nexcess GPG Key(s)
+  rpm_key: key={{ item }} state=present
+  with_items: "{{ server.gpg_keys }}"
+
+- name: Install Nexcess YUM Repos
+  copy: src={{ item }} dest=/etc/yum.repos.d
+  with_items: "{{ server.repos }}"
+
+- name: Install Extras
+  yum: name={{ item }} state=latest
+  with_items: "{{ server.packages }}"
+
+- name: Turn Off Unused Services
+  service: name={{ item }} enabled=no state=stopped
+  with_items: "{{ services.unused }}"
+
+- name: Bump User File Limits (Hard)
+  pam_limits:
+    domain=*
+    limit_type=hard
+    limit_item=nofile
+    value=65536
+    use_max=yes
+
+- name: Bump User File Limits (Soft)
+  pam_limits:
+    domain=*
+    limit_type=soft
+    limit_item=nofile
+    value=131072
+    use_max=yes
+
+- name: Bump User Proc Limits (Hard)
+  pam_limits:
+    domain=*
+    limit_type=hard
+    limit_item=nproc
+    value=131072
+    use_max=yes
+
+- name: Bump User Proc Limits (Soft)
+  pam_limits:
+    domain=*
+    limit_type=soft
+    limit_item=nproc
+    value=8192
+    use_max=yes
+
+- name: Update Sysctl (net.core.somaxconn)
+  sysctl:
+    name=net.core.somaxconn
+    value=131072
+    state=present
+    ignoreerrors=yes
+
+- name: Update Sysctl (net.ipv4.ip_local_port_range)
+  sysctl:
+    name=net.ipv4.ip_local_port_range
+    value="2000 62000"
+    state=present
+    ignoreerrors=yes
+
+- name: Update Sysctl (net.ipv4.tcp_tw_recycle)
+  sysctl:
+    name=net.ipv4.tcp_tw_recycle
+    value=1
+    state=present
+    ignoreerrors=yes
+    reload=yes
+
+- name: Install PIP
+  easy_install: name=pip state=latest

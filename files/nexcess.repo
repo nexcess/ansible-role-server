@@ -1,0 +1,6 @@
+[nexcess]
+exclude=php* mysql* varnish*
+name=nexcess
+baseurl=http://rpms.nexcess.net/el/$releasever/$basearch/
+gpgkey=http://rpms.nexcess.net/RPM-GPG-KEY-NEXCESS
+enabled=1

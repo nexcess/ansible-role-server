@@ -1,0 +1,25 @@
+---
+
+server:
+  hostname: {{ ansible_hostname }}
+  timezone: America/Detroit
+  charmap: en_US
+  codeset: UTF-8
+  gpg_keys:
+    - http://rpms.nexcess.net/RPM-GPG-KEY-NEXCESS
+    - http://rpms.remirepo.net/RPM-GPG-KEY-remi
+  packages:
+    - emacs-nox
+    - git
+    - rsync
+    - vim
+    - mlocate
+    - telnet
+    - lynx
+    - strace
+    - nc
+  repos:
+    - nexcess.repo
+    - nexcess-scl.repo
+  extra_path:
+
