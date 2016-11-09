@@ -22,5 +22,5 @@ server:
     - nexcess.repo
   extra_path:
   services:
-    unused:
+    unused: []
 
