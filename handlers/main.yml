@@ -1,4 +1,4 @@
 ---
 
-- name: Server Update
+- name: server update
   yum: name=* update_cache=yes state=latest

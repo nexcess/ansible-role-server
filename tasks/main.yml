@@ -83,3 +83,6 @@
 - name: Install PIP
   easy_install: name=pip state=latest
 
+- name: Update Base System
+  command: /bin/true
+  notify: server update
