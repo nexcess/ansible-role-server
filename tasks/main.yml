@@ -1,11 +1,11 @@
 ---
 
-- name: Set the Global PATH
+- name: Set the Global PAT
+  when: server.extra_path != ''
   lineinfile:
     dest=/etc/environment
     state=present
     line="PATH={{ server.extra_path }}:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
-    when server.extra_path != ''
 
 - name: Set Hostname
   hostname: name={{ server.hostname }}
