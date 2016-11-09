@@ -8,7 +8,7 @@
     line="PATH={{ server.extra_path }}:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
 
 - name: Set Hostname
-  hostname: name={{ server.hostname }}
+  hostname: name="{{ server.hostname }}"
 
 - name: Install Nexcess GPG Key(s)
   rpm_key: key={{ item }} state=present
