@@ -1,0 +1,88 @@
+---
+
+- name: Set the Global PATH
+  when: server.extra_path != ''
+  lineinfile:
+    dest=/etc/environment
+    state=present
+    line="PATH={{ server.extra_path }}:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
+
+- name: Set Hostname
+  hostname: name="{{ server.hostname }}"
+
+- name: Install Nexcess GPG Key(s)
+  rpm_key: key={{ item }} state=present
+  with_items: "{{ server.gpg_keys }}"
+
+- name: Install Nexcess YUM Repos
+  copy: src={{ item }} dest=/etc/yum.repos.d
+  with_items: "{{ server.repos }}"
+
+- name: Install Extras
+  yum: name={{ item }} state=latest
+  with_items: "{{ server.packages }}"
+
+- name: Turn Off Unused Services
+  service: name={{ item }} enabled=no state=stopped
+  with_items: "{{ server.services.unused }}"
+
+- name: Bump User File Limits (Hard)
+  pam_limits:
+    domain=*
+    limit_type=hard
+    limit_item=nofile
+    value={{ server.pam.nofile.hard }}
+    use_max=yes
+
+- name: Bump User File Limits (Soft)
+  pam_limits:
+    domain=*
+    limit_type=soft
+    limit_item=nofile
+    value={{ server.pam.nofile.soft }}
+    use_max=yes
+
+- name: Bump User Proc Limits (Hard)
+  pam_limits:
+    domain=*
+    limit_type=hard
+    limit_item=nproc
+    value={{ server.pam.nproc.hard }}
+    use_max=yes
+
+- name: Bump User Proc Limits (Soft)
+  pam_limits:
+    domain=*
+    limit_type=soft
+    limit_item=nproc
+    value={{ server.pam.nproc.soft }}
+    use_max=yes
+
+- name: Update Sysctl (net.core.somaxconn)
+  sysctl:
+    name=net.core.somaxconn
+    value={{ server.sysctl.net_core_somaxconn }}
+    state=present
+    ignoreerrors=yes
+
+- name: Update Sysctl (net.ipv4.ip_local_port_range)
+  sysctl:
+    name=net.ipv4.ip_local_port_range
+    value={{ server.sysctl.net_ipv4_ip_local_port_range }}
+    state=present
+    ignoreerrors=yes
+
+- name: Update Sysctl (net.ipv4.tcp_tw_recycle)
+  sysctl:
+    name=net.ipv4.tcp_tw_recycle
+    value=1
+    state=present
+    ignoreerrors=yes
+    reload=yes
+
+- name: Install PIP
+  easy_install: name=pip state=latest
+
+- name: Update Base System
+  command: /bin/true
+  notify: server update
