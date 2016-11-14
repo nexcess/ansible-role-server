@@ -1,5 +1,4 @@
 ---
-
 server:
   hostname: "{{ ansible_hostname }}"
   charmap: en_US
