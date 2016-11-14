@@ -1,6 +1,6 @@
 ---
+server_hostname: "{{ ansible_hostname }}"
 server:
-  hostname: "{{ ansible_hostname }}"
   charmap: en_US
   codeset: UTF-8
   gpg_keys:
