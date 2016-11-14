@@ -80,6 +80,14 @@
     ignoreerrors=yes
     reload=yes
 
+- name: Update Sysctl (fs.file-max)
+  sysctl:
+    name=fs.file-max
+    value={{ server.sysctl.fs_file_max }}
+    state=present
+    ignoreerrors=yes
+    reload=yes
+
 - name: Install PIP
   easy_install: name=pip state=latest
 
