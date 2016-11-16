@@ -11,5 +11,4 @@ galaxy_info:
       - 6
       - 7
 dependencies:
-  - geerlingguy.firewall
-
+  - mikegleasonjr.firewall
