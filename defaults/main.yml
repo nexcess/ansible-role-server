@@ -31,3 +31,23 @@ server:
     net_core_somaxconn: 999999
     net_ipv4_ip_local_port_range: "10240 62000"
     fs_file_max: 999999
+
+firewall_v4_default_rules:
+  001 default policies:
+    - -P INPUT ACCEPT
+    - -P OUTPUT ACCEPT
+    - -P FORWARD DROP
+  002 allow loopback:
+    - -A INPUT -i lo -j ACCEPT
+  003 allow ping replies:
+    - -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+    - -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
+  100 allow established related:
+    - -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+  200 allow ssh limiting brute force:
+    - -I INPUT -p tcp -d {{ hostvars[inventory_hostname]['ansible_eth0']['ipv4']['address'] }} --dport 22 -m state --state NEW -m recent --set
+    - -I INPUT -p tcp -d {{ hostvars[inventory_hostname]['ansible_eth0']['ipv4']['address'] }} --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 4 -j DROP
+    - -I INPUT -p tcp -d {{ hostvars[inventory_hostname]['ansible_eth1']['ipv4']['address'] }} --dport 22 -m state --state NEW -m recent --set
+    - -I INPUT -p tcp -d {{ hostvars[inventory_hostname]['ansible_eth1']['ipv4']['address'] }} --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 4 -j DROP
+  999 drop everything:
+    - -P INPUT DROP
