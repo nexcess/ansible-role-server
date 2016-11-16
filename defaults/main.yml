@@ -1,11 +1,11 @@
 ---
 server_hostname: "{{ ansible_hostname }}"
-server:
-  charmap: en_US
-  codeset: UTF-8
-  gpg_keys:
+server_charmap: en_US
+server_codeset: UTF-8
+server_gpgkeys:
     - http://rpms.nexcess.net/RPM-GPG-KEY-NEXCESS
-  packages:
+server_packages:
+    - iptables-services
     - emacs-nox
     - git
     - rsync
@@ -15,19 +15,18 @@ server:
     - lynx
     - strace
     - nc
-  repos:
+server_repos:
     - nexcess.repo
-  extra_path:
-  services:
-    unused: []
-  pam:
+server_extra_path:
+server_services_unused:
+server_pam:
     nofile:
       soft: 999999
       hard: 999999
     nproc:
       soft: 999999
       hard: 999999
-  sysctl:
+server_sysctl:
     net_core_somaxconn: 999999
     net_ipv4_ip_local_port_range: "10240 62000"
     fs_file_max: 999999

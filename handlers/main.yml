@@ -2,3 +2,6 @@
 
 - name: server update
   yum: name=* update_cache=yes state=latest
+
+- name: restart firewall
+  command: /etc/iptables.v4.generated && /usr/libexec/iptables/iptables.init save
