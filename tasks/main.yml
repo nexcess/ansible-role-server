@@ -91,13 +91,6 @@
 - name: Install PIP
   easy_install: name=pip state=latest
 
-- name: Update Known Hosts
-  known_hosts:
-    path=/etc/ssh/ssh_known_hosts
-    name={{ item }}
-    key={{ lookup('file', 'files/{{ item }}-key' }}
-    with_items={{ server_ssh_known_hosts }}
-
 - name: Update Base System
   command: /bin/true
   notify: server update
