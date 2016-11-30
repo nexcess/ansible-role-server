@@ -3,35 +3,33 @@ server_hostname: "{{ ansible_hostname }}"
 server_charmap: en_US
 server_codeset: UTF-8
 server_gpgkeys:
-    - http://rpms.nexcess.net/RPM-GPG-KEY-NEXCESS
+  - http://rpms.nexcess.net/RPM-GPG-KEY-NEXCESS
 server_packages:
-    - iptables-services
-    - emacs-nox
-    - git
-    - rsync
-    - vim
-    - mlocate
-    - telnet
-    - lynx
-    - strace
-    - nc
+  - iptables-services
+  - emacs-nox
+  - git
+  - rsync
+  - vim
+  - mlocate
+  - telnet
+  - lynx
+  - strace
+  - nc
 server_repos:
-    - nexcess.repo
+  - nexcess.repo
 server_extra_path:
 server_services_unused: []
 server_pam:
-    nofile:
-      soft: 999999
-      hard: 999999
-    nproc:
-      soft: 999999
-      hard: 999999
+  nofile:
+    soft: 999999
+    hard: 999999
+  nproc:
+    soft: 999999
+    hard: 999999
 server_sysctl:
-    net_core_somaxconn: 999999
-    net_ipv4_ip_local_port_range: "10240 62000"
-    fs_file_max: 999999
-server_ssh_known_hosts_command: "ssh-keyscan -H -T 10"
-server_ssh_known_hosts_file: "/etc/ssh/ssh_known_hosts"
+  net_core_somaxconn: 999999
+  net_ipv4_ip_local_port_range: "10240 62000"
+  fs_file_max: 999999
 server_ssh_known_hosts:
   - github.com
 
