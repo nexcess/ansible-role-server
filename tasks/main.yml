@@ -91,6 +91,20 @@
 - name: Install PIP
   easy_install: name=pip state=latest
 
+- name: Make Sure SSH Known Hosts Exists
+  file: "path={{ ssh_known_hosts_file }} state=touch"
+
+- name: Scan For Known Hosts (locally)
+  shell: "ssh-keygen -f {{ ssh_known_hosts_file }} -F {{ item }}"
+  with_items: ssh_known_hosts
+  register: ssh_known_host_results
+  ignore_errors: yes
+
+- name: Update Known Hosts
+  shell: "{{ ssh_known_hosts_command}} {{ item.item }} >> {{ ssh_known_hosts_file }}"
+  with_items: ssh_known_host_results.results
+  when: item.stdout == ""
+
 - name: Update Base System
   command: /bin/true
   notify: server update
