@@ -15,6 +15,7 @@ server_packages:
   - lynx
   - strace
   - nc
+  - jq
 server_repos:
   - nexcess.repo
 server_extra_path:
