@@ -12,3 +12,4 @@ galaxy_info:
       - 7
 dependencies:
   - mikegleasonjr.firewall
+  - geerlingguy.repo-epel
