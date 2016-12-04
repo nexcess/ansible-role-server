@@ -4,12 +4,14 @@
 ::1 localhost localhost.localdomain
 ::1 localhost6 localhost.localdomain6
 
+# Public
 {% for host in play_hosts %}
 {% if 'ansible_eth0' in hostvars[host] %}
 {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} {{ host }}
 {% endif %}
 {% endfor %}
 
+# Private
 {% for host in play_hosts %}
 {% if 'backnet_address' in hostvars[host] %}
 {{ hostvars[host]['backnet_address'] }} {{ host }}-int
