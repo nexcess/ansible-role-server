@@ -7,7 +7,7 @@
 # Public
 {% for host in play_hosts %}
 {% if 'ansible_eth0' in hostvars[host] %}
-{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} {{ host }}
+{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} {{ host }} {% if server_hostname %}{{ server_hostname }} {% endif %}
 {% endif %}
 {% endfor %}
 
