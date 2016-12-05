@@ -6,16 +6,15 @@
 
 # Public
 {% for host in play_hosts %}
-{% if 'ansible_eth0' in hostvars[host] %}
-{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} {{ host }} {% if server_hostname %}{{ server_hostname }} {% endif %}
+{% if 'frontnet_addr' in hostvars[host] %}
+{{ hostvars[host]['frontnet_addr'] }} {{ host }} {% if server_hostname %}{{ server_hostname }} {% endif %}
 
 {% endif %}
 {% endfor %}
 
-
 # Private
 {% for host in play_hosts %}
-{% if 'backnet_address' in hostvars[host] %}
-{{ hostvars[host]['backnet_address'] }} {{ host }}-int
+{% if 'backnet_addr' in hostvars[host] %}
+{{ hostvars[host]['backnet_addr'] }} {{ host }}-int
 {% endif %}
 {% endfor %}
