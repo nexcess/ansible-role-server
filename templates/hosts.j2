@@ -15,7 +15,7 @@
 
 # Private
 {% for host in play_hosts %}
-{% if 'backnet_address' in hostvars[host] %}
-{{ hostvars[host]['backnet_address'] }} {{ host }}-int
+{% if 'backnet_addr' in hostvars[host] %}
+{{ hostvars[host]['backnet_addr'] }} {{ host }}-int
 {% endif %}
 {% endfor %}
