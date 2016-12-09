@@ -1,11 +1,11 @@
 ---
 
 - name: Set the Global PATH
-  when: server_extra_path != ''
   lineinfile:
     dest=/etc/environment
     state=present
     line="PATH={{ server_extra_path }}:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
+  when: server_extra_path != ''
 
 - name: Set Hostname
   hostname: name="{{ server_hostname }}"
@@ -19,7 +19,7 @@
   with_items: "{{ server_repos }}"
 
 - name: Install Extras
-  yum: name={{ item }} state=latest
+  yum: name={{ item }} state=present
   with_items: "{{ server_packages }}"
 
 - name: Turn Off Unused Services
@@ -89,7 +89,7 @@
     reload=yes
 
 - name: Install PIP
-  easy_install: name=pip state=latest
+  easy_install: name=pip state=present
 
 - name: Setup /etc/hosts
   template:
