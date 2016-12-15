@@ -39,8 +39,11 @@ firewall_v4_default_rules:
     - -P INPUT ACCEPT
     - -P OUTPUT ACCEPT
     - -P FORWARD DROP
-  002 allow loopback:
+  002 allow local access in general:
     - -A INPUT -i lo -j ACCEPT
+    - -A INPUT -s 127.0.0.1 -j ACCEPT
+    - -A INPUT -s {{ hostvars[inventory_hostname]['ansible_eth0']['ipv4']['address'] }} -j ACCEPT
+    - -A INPUT -s {{ hostvars[inventory_hostname]['ansible_eth1']['ipv4']['address'] }} -j ACCEPT
   003 allow ping replies:
     - -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
     - -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
