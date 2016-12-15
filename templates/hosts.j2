@@ -7,7 +7,7 @@
 # Public
 {% for host in play_hosts %}
 {% if 'frontnet_addr' in hostvars[host] %}
-{{ hostvars[host]['frontnet_addr'] }} {{ host }} {% if server_hostname %}{{ server_hostname }} {% endif %}
+{{ hostvars[host]['frontnet_addr'] }} {{ host }} {% if 'server_hostname' in hostvars[host] %} {{ hostvars[host]['server_hostname'] }} {% endif %}
 
 {% endif %}
 {% endfor %}
