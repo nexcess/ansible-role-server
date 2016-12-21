@@ -1,5 +1,4 @@
 ---
-server_hostname: "{{ ansible_hostname }}"
 server_charmap: en_US
 server_codeset: UTF-8
 server_update: true

@@ -8,7 +8,7 @@
   when: server_extra_path != ''
 
 - name: Set Hostname
-  hostname: name="{{ server_hostname }}"
+  hostname: name="{{ inventory_hostname }}"
 
 - name: Install Nexcess GPG Key(s)
   rpm_key: key={{ item }} state=present
