@@ -7,9 +7,6 @@
     line="PATH={{ server_extra_path }}:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
   when: server_extra_path != ''
 
-- name: Set Hostname
-  hostname: name="{{ server_hostname }}"
-
 - name: Install Nexcess GPG Key(s)
   rpm_key: key={{ item }} state=present
   with_items: "{{ server_gpgkeys }}"
@@ -87,9 +84,6 @@
     state=present
     ignoreerrors=yes
     reload=yes
-
-- name: Install PIP
-  easy_install: name=pip state=present
 
 - name: Setup /etc/hosts
   template:

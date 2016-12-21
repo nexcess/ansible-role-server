@@ -1,8 +1,7 @@
 ---
-server_hostname: "{{ ansible_hostname }}"
 server_charmap: en_US
 server_codeset: UTF-8
-server_update: true
+server_update: false
 server_gpgkeys:
   - http://rpms.nexcess.net/RPM-GPG-KEY-NEXCESS
 server_packages:
@@ -13,6 +12,7 @@ server_packages:
   - vim
   - mlocate
   - telnet
+  - tcpdump
   - lynx
   - strace
   - nc
@@ -20,7 +20,8 @@ server_packages:
 server_repos:
   - nexcess.repo
 server_extra_path:
-server_services_unused: []
+server_services_unused:
+  - firewall
 server_pam:
   nofile:
     soft: 999999
