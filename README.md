@@ -10,7 +10,7 @@ Base Ansible role for a Nexcess "server".  This role should be common across all
 - Installs our base repo + GPG keys and EPEL
 - Sets up base NTP
 - Provides a simple iptables based firewall interface with good default rules
-- **IMPORTANT** - handles setting up of /etc/hosts for an entire project inventory
+- **IMPORTANT** - handles setting up of /etc/hosts for an entire project inventory.  This includes both internal and external IPs.  It follows the inventory standard of backnet_addr=xx.xx.xx.xx and frontnet_addr=yy.yy.yy.yy and will automatically add the "-int" to the end of your inventory short name.
 
 Variables
 ---------
