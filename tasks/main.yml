@@ -24,7 +24,7 @@
   with_items: "{{ server_services_unused }}"
   ignore_errors: yes
 
-- include: ./limits.yml
+- include: limits.yml
 
 - name: Setup /etc/hosts
   template:
