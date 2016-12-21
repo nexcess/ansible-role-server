@@ -22,68 +22,9 @@
 - name: Turn Off Unused Services
   service: name={{ item }} enabled=no state=stopped
   with_items: "{{ server_services_unused }}"
+  ignore_errors: yes
 
-- name: Bump User File Limits (Hard)
-  pam_limits:
-    domain=*
-    limit_type=hard
-    limit_item=nofile
-    value={{ server_pam.nofile.hard }}
-    use_max=yes
-
-- name: Bump User File Limits (Soft)
-  pam_limits:
-    domain=*
-    limit_type=soft
-    limit_item=nofile
-    value={{ server_pam.nofile.soft }}
-    use_max=yes
-
-- name: Bump User Proc Limits (Hard)
-  pam_limits:
-    domain=*
-    limit_type=hard
-    limit_item=nproc
-    value={{ server_pam.nproc.hard }}
-    use_max=yes
-
-- name: Bump User Proc Limits (Soft)
-  pam_limits:
-    domain=*
-    limit_type=soft
-    limit_item=nproc
-    value={{ server_pam.nproc.soft }}
-    use_max=yes
-
-- name: Update Sysctl (net.core.somaxconn)
-  sysctl:
-    name=net.core.somaxconn
-    value={{ server_sysctl.net_core_somaxconn }}
-    state=present
-    ignoreerrors=yes
-
-- name: Update Sysctl (net.ipv4.ip_local_port_range)
-  sysctl:
-    name=net.ipv4.ip_local_port_range
-    value={{ server_sysctl.net_ipv4_ip_local_port_range }}
-    state=present
-    ignoreerrors=yes
-
-- name: Update Sysctl (net.ipv4.tcp_tw_recycle)
-  sysctl:
-    name=net.ipv4.tcp_tw_recycle
-    value=1
-    state=present
-    ignoreerrors=yes
-    reload=yes
-
-- name: Update Sysctl (fs.file-max)
-  sysctl:
-    name=fs.file-max
-    value={{ server_sysctl.fs_file_max }}
-    state=present
-    ignoreerrors=yes
-    reload=yes
+- include: limits.yml
 
 - name: Setup /etc/hosts
   template:
