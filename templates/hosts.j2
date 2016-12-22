@@ -7,7 +7,7 @@
 # Public
 {% for host in play_hosts %}
 {% if 'frontnet_addr' in hostvars[host] %}
-{{ hostvars[host]['frontnet_addr'] }} {{ host }} {% if 'inventory_hostname_short' in hostvars[host] %} {{ hostvars[host]['inventory_hostname'] }} {% endif %}
+{{ hostvars[host]['frontnet_addr'] }} {{ host }} {{ ansible_hostname }}
 
 {% endif %}
 {% endfor %}
@@ -15,6 +15,6 @@
 # Private
 {% for host in play_hosts %}
 {% if 'backnet_addr' in hostvars[host] %}
-{{ hostvars[host]['backnet_addr'] }} {{ host }}-int
+{{ hostvars[host]['backnet_addr'] }} {{ ansible_hostname }}-int
 {% endif %}
 {% endfor %}
