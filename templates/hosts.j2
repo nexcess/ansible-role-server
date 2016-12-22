@@ -9,7 +9,6 @@
 {% if 'frontnet_addr' in hostvars[host] %}
 {% set short_name = host.split('.') %}
 {{ hostvars[host]['frontnet_addr'] }} {{ host }} {{ short_name[0] }}
-
 {% endif %}
 {% endfor %}
 
