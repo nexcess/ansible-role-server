@@ -22,6 +22,7 @@ server_repos:
 server_extra_path:
 server_services_unused:
   - firewall
+server_adjust_limits: true
 server_pam:
   nofile:
     soft: 999999

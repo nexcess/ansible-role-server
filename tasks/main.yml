@@ -25,6 +25,7 @@
   ignore_errors: yes
 
 - include: limits.yml
+  when: server_adjust_limits
 
 - name: Setup /etc/hosts
   template:
