@@ -10,3 +10,16 @@ galaxy_info:
       versions:
         - "6"
         - "7"
+dependencies:
+  - role: "nexcess.firewall"
+    scm: "git"
+    src: "git@github.com:nexcess/ansible-role-firewall"
+    name: "nexcess.firewall"
+  - role: "nexcess.repo-epel"
+    scm: "git"
+    src: "git@github.com:nexcess/ansible-role-repo-epel"
+    name: "nexcess.repo-epel"
+  - role: "nexcess.ntp"
+    scm: "git"
+    src: "git@github.com:nexcess/ansible-role-ntp"
+    name: "nexcess.ntp"
