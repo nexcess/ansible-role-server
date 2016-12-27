@@ -1,19 +1,25 @@
 ---
 galaxy_info:
-  author: Chris Wells
-  description: Base Nexcess Server Config (Sharable)
-  company: Nexcess.net LLC
-  license: MIT
-  min_ansible_version: 2.0
+  author: "Chris Wells"
+  description: "Base Nexcess Server Config (Sharable)"
+  company: "Nexcess.net LLC"
+  license: "MIT"
+  min_ansible_version: "2.0"
   platforms:
-    - name: EL
+    - name: "EL"
       versions:
-        - 6
-        - 7
+        - "6"
+        - "7"
 dependencies:
-  - src: "https://github.com/nexcess/ansible-role-firewall.git"
+  - role: "nexcess.firewall"
+    scm: "git"
+    src: "git@github.com/nexcess/ansible-role-firewall"
     name: "nexcess.firewall"
-  - src: "https://github.com/nexcess/ansible-role-repo-epel.git"
+  - role: "nexcess.repo-epel"
+    scm: "git"
+    src: "git@github.com/nexcess/ansible-role-repo-epel"
     name: "nexcess.repo-epel"
-  - src: "https://github.com/nexcess/ansible-role-ntp.git"
+  - role: "nexcess.ntp"
+    scm: "git"
+    src: "git@github.com/nexcess/ansible-role-ntp"
     name: "nexcess.ntp
