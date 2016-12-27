@@ -15,6 +15,7 @@ dependencies:
     scm: "git"
     src: "git@github.com:nexcess/ansible-role-firewall"
     name: "nexcess.firewall"
+    version: "1.1.0"
   - role: "nexcess.repo-epel"
     scm: "git"
     src: "git@github.com:nexcess/ansible-role-repo-epel"
