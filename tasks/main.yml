@@ -7,14 +7,6 @@
     line="PATH={{ server_extra_path }}:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
   when: server_extra_path != ''
 
-- name: Install Nexcess GPG Key(s)
-  rpm_key: key={{ item }} state=present
-  with_items: "{{ server_gpgkeys }}"
-
-- name: Install Nexcess YUM Repos
-  copy: src={{ item }} dest=/etc/yum.repos.d
-  with_items: "{{ server_repos }}"
-
 - name: Install Extras
   yum: name={{ item }} state=present
   with_items: "{{ server_packages }}"

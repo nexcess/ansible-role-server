@@ -1,9 +1,5 @@
 ---
-server_charmap: en_US
-server_codeset: UTF-8
 server_update: false
-server_gpgkeys:
-  - http://rpms.nexcess.net/RPM-GPG-KEY-NEXCESS
 server_packages:
   - iptables-services
   - emacs-nox
@@ -17,11 +13,8 @@ server_packages:
   - strace
   - nc
   - jq
-server_repos:
-  - nexcess.repo
 server_extra_path:
-server_services_unused:
-  - firewall
+server_services_unused: []
 server_adjust_limits: true
 server_pam:
   nofile:
@@ -34,8 +27,6 @@ server_sysctl:
   net_core_somaxconn: 999999
   net_ipv4_ip_local_port_range: "10240 62000"
   fs_file_max: 999999
-server_ssh_known_hosts:
-  - github.com
 
 firewall_v4_default_rules:
   001 default policies:
