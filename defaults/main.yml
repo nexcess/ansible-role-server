@@ -2,8 +2,6 @@
 server_charmap: en_US
 server_codeset: UTF-8
 server_update: false
-server_gpgkeys:
-  - http://rpms.nexcess.net/RPM-GPG-KEY-NEXCESS
 server_packages:
   - iptables-services
   - emacs-nox
@@ -17,11 +15,8 @@ server_packages:
   - strace
   - nc
   - jq
-server_repos:
-  - nexcess.repo
 server_extra_path:
 server_services_unused:
-  - firewall
 server_adjust_limits: true
 server_pam:
   nofile:
