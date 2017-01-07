@@ -2,17 +2,22 @@
 
 - name: Set the Global PATH
   lineinfile:
-    dest=/etc/environment
-    state=present
+    dest="/etc/environment"
+    state="present"
     line="PATH={{ server_extra_path }}:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
   when: server_extra_path != ''
 
 - name: Install Extras
-  yum: name={{ item }} state=present
+  yum:
+    name="{{ item }}"
+    state="present"
   with_items: "{{ server_packages }}"
 
 - name: Turn Off Unused Services
-  service: name={{ item }} enabled=no state=stopped
+  service:
+    name="{{ item }}"
+    enabled="no"
+    state="stopped"
   with_items: "{{ server_services_unused }}"
   ignore_errors: yes
 
@@ -21,11 +26,11 @@
 
 - name: Setup /etc/hosts
   template:
-    src=hosts.j2
-    dest=/etc/hosts
-    owner=root
-    group=root
-    mode=0644
+    src="hosts.j2"
+    dest="/etc/hosts"
+    owner="root"
+    group="root"
+    mode="0644"
 
 - name: Update Base System
   command: /bin/true
