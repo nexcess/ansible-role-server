@@ -24,6 +24,7 @@ server_packages:
   - "nc"
   - "jq"
   - "pigz"
+  - "unzip"
 server_extra_packages: []
 server_extra_path:
 server_services_unused: []
