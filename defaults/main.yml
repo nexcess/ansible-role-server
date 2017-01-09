@@ -42,6 +42,11 @@ server_sysctl:
   net_ipv4_ip_local_port_range: "10240 62000"
   fs_file_max: 999999
 
+server_ssh_known_hosts_command: "ssh-keyscan -H -T 10"
+server_ssh_known_hosts_file: "/etc/ssh/ssh_known_hosts"
+server_ssh_known_hosts:
+  - "github.com"
+
 # Firewall Defaults
 firewall_v4_default_rules:
   001 default policies:
