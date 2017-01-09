@@ -25,6 +25,7 @@ server_packages:
   - "jq"
   - "pigz"
   - "unzip"
+  - "bzip2"
 server_extra_packages: []
 server_extra_path:
 server_services_unused: []
