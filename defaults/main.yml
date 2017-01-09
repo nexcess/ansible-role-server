@@ -11,18 +11,20 @@ ntp_area: "north-america"
 # Server Defaults
 server_update: false
 server_packages:
-  - iptables-services
-  - emacs-nox
-  - git
-  - rsync
-  - vim
-  - mlocate
-  - telnet
-  - tcpdump
-  - lynx
-  - strace
-  - nc
-  - jq
+  - "iptables-services"
+  - "emacs-nox"
+  - "git"
+  - "rsync"
+  - "vim"
+  - "mlocate"
+  - "telnet"
+  - "tcpdump"
+  - "lynx"
+  - "strace"
+  - "nc"
+  - "jq"
+  - "pigz"
+server_extra_packages: []
 server_extra_path:
 server_services_unused: []
 server_adjust_limits: true
