@@ -26,6 +26,7 @@ server_packages:
   - "pigz"
   - "unzip"
   - "bzip2"
+  - "net-tools"
 server_extra_packages: []
 server_extra_path:
 server_services_unused: []
