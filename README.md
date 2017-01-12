@@ -17,7 +17,7 @@ Lots, but just about everything is overridable.  See [defaults/main.yml](https:/
 
 ## Dependencies
 
-- nexcessfirewall
+- nexcess.firewall
 - nexcess.repo-epel
 - nexcess.ntp
 
