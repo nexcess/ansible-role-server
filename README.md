@@ -13,7 +13,7 @@ Base Ansible role for a Nexcess "server".  This role should be common across all
 
 ## Role Variables
 
-Lots, but just about everything is overridable.  See [defaults/main.yml](https://github.com/clwells/ansible-role-server/blob/master/defaults/main.yml)
+Lots, but just about everything is overridable.  See [defaults/main.yml](https://github.com/nexcess/ansible-role-server/blob/master/defaults/main.yml)
 
 ## Dependencies
 
