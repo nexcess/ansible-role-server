@@ -7,8 +7,7 @@
 # Public
 {% for host in play_hosts %}
 {% if 'frontnet_addr' in hostvars[host] %}
-{% set short_name = host.split('.') %}
-{{ hostvars[host]['frontnet_addr'] }} {{ host }} {{ short_name[0] }}
+{{ hostvars[host]['frontnet_addr'] }} {{ host }} {{ host.split('.')[0] }}
 {% endif %}
 {% endfor %}
 
@@ -18,8 +17,7 @@
 {% if 'backnet_host' in hostvars[host] %}
 {{ hostvars[host].backnet_addr }} {{ hostvars[host].backnet_host }}
 {% else %}
-{% set short_name = host.split('.') %}
-{{ hostvars[host].backnet_addr }} {{ short_name[0] }}-int
+{{ hostvars[host].backnet_addr }} {{ host.split('.')[0] }}-int
 {% endif %}
 {% endif %}
 {% endfor %}
