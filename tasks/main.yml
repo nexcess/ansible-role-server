@@ -1,5 +1,9 @@
 ---
 
+- name: Set the Hostname
+  hostname: "{{ inventory_hostname }}"
+  ignore_errors: "yes"
+
 - name: Set the Global PATH
   lineinfile:
     dest="/etc/environment"
