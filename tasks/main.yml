@@ -1,7 +1,8 @@
 ---
 
 - name: Set the Hostname
-  hostname: "{{ inventory_hostname }}"
+  hostname:
+    name="{{ inventory_hostname }}"
   ignore_errors: "yes"
 
 - name: Set the Global PATH
