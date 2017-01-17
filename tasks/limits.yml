@@ -25,6 +25,7 @@
     state="present"
     sysctl_set="yes"
     ignoreerrors="yes"
+    reload="yes"
   with_items: "{{ server_sysctl }}"
 
 - name: Set Extra Sysctl
@@ -34,8 +35,5 @@
     state="present"
     sysctl_set="yes"
     ignoreerrors="yes"
-  with_items: "{{ server_extra_sysctl }}"
-
-- name: Reload Sysctl
-  sysctl:
     reload="yes"
+  with_items: "{{ server_extra_sysctl }}"
