@@ -20,7 +20,7 @@
 
 - name: Set Base Sysctl
   sysctl:
-    name="{{ item.key }}"
+    name="{{ item.key | replace('__', '.') }}"
     value="{{ item.value }}"
     state="present"
     sysctl_set="yes"
@@ -29,7 +29,7 @@
 
 - name: Set Extra Sysctl
   sysctl:
-    name="{{ item.key }}"
+    name="{{ item.key | replace('__', '.') }}"
     value="{{ item.value }}"
     state="present"
     sysctl_set="yes"
