@@ -39,11 +39,13 @@ server_pam:
   nproc:
     soft: 999999
     hard: 999999
-## Double Underscore == '.'
 server_sysctl:
-  net__core.somaxconn: 999999
-  net__ipv4__ip_local_port_range: "10240 62000"
-  fs__file_max: 999999
+  - key: "net.core.somaxconn"
+    value: 999999
+  - key: "net.ipv4.ip_local_port_range"
+    value: "10240 62000"
+  - key: "fs.file-max"
+    value: 999999
 server_extra_sysctl: {}
 server_ssh_known_hosts_command: "ssh-keyscan -H -T 10"
 server_ssh_known_hosts_file: "/etc/ssh/ssh_known_hosts"

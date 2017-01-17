@@ -20,21 +20,21 @@
 
 - name: Set Base Sysctl
   sysctl:
-    name="{{ item.key | replace('__', '.') }}"
+    name="{{ item.key }}"
     value="{{ item.value }}"
     state="present"
     sysctl_set="yes"
     ignoreerrors="yes"
-  with_dict: "{{ server_sysctl }}"
+  with_items: "{{ server_sysctl }}"
 
 - name: Set Extra Sysctl
   sysctl:
-    name="{{ item.key | replace('__', '.') }}"
+    name="{{ item.key }}"
     value="{{ item.value }}"
     state="present"
     sysctl_set="yes"
     ignoreerrors="yes"
-  with_dict: "{{ server_extra_sysctl }}"
+  with_items: "{{ server_extra_sysctl }}"
 
 - name: Reload Sysctl
   sysctl:
