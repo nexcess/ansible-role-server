@@ -1,66 +1,41 @@
 ---
 
-- name: Bump User File Limits (Hard)
-  pam_limits:
-    domain="*"
-    limit_type="hard"
-    limit_item="nofile"
-    value="{{ server_pam.nofile.hard }}"
-    use_max="yes"
-
-- name: Bump User File Limits (Soft)
+- name: Set Base PAM Limits (Soft)
   pam_limits:
     domain="*"
     limit_type="soft"
-    limit_item="nofile"
-    value="{{ server_pam.nofile.soft }}"
+    limit_item="{{ item.key }}"
+    value="{{ item.value.soft }}"
     use_max="yes"
+  with_dict: "{{ server_pam }}"
 
-- name: Bump User Proc Limits (Hard)
+- name: Set Base PAM Limits (Hard)
   pam_limits:
     domain="*"
     limit_type="hard"
-    limit_item="nproc"
-    value="{{ server_pam.nproc.hard }}"
+    limit_item="{{ item.key }}"
+    value="{{ item.value.hard }}"
     use_max="yes"
+  with_dict: "{{ server_pam }}"
 
-- name: Bump User Proc Limits (Soft)
-  pam_limits:
-    domain="*"
-    limit_type="soft"
-    limit_item="nproc"
-    value="{{ server_pam.nproc.soft }}"
-    use_max="yes"
-
-- name: Update Sysctl (net.core.somaxconn)
+- name: Set Base Sysctl
   sysctl:
-    name="net.core.somaxconn"
-    value="{{ server_sysctl.net_core_somaxconn }}"
+    name="{{ item.key }}"
+    value="{{ item.value }}"
     state="present"
     sysctl_set="yes"
     ignoreerrors="yes"
+  with_dict: "{{ server_sysctl }}"
 
-- name: Update Sysctl (net.ipv4.ip_local_port_range)
+- name: Set Extra Sysctl
   sysctl:
-    name="net.ipv4.ip_local_port_range"
-    value="{{ server_sysctl.net_ipv4_ip_local_port_range }}"
+    name="{{ item.key }}"
+    value="{{ item.value }}"
     state="present"
     sysctl_set="yes"
     ignoreerrors="yes"
+  with_dict: "{{ server_extra_sysctl }}"
 
-- name: Update Sysctl (net.ipv4.tcp_tw_recycle)
+- name: Reload Sysctl
   sysctl:
-    name="net.ipv4.tcp_tw_recycle"
-    value="1"
-    state="present"
-    sysctl_set="yes"
-    ignoreerrors="yes"
-
-- name: Update Sysctl (fs.file-max)
-  sysctl:
-    name="fs.file-max"
-    value="{{ server_sysctl.fs_file_max }}"
-    state="present"
-    sysctl_set="yes"
-    ignoreerrors="yes"
     reload="yes"
