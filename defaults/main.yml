@@ -4,7 +4,7 @@
 backnet_host: "{{ inventory_hostname }}-int"
 
 # NTP Defaults
-ntp_enabled: true
+ntp_included: true
 ntp_timezone: "America/Detroit"
 ntp_area: "north-america"
 
