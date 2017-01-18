@@ -55,7 +55,7 @@
 
 - name: Setup our Aliases
   lineinfile:
-    dest="/etc/bash_aliases"
+    dest="/etc/profile.d/aliases.sh"
     create="yes"
     owner="root"
     group="root"
@@ -63,12 +63,6 @@
     line='alias {{ item.key }}="{{ item.value }}"'
     regexp="^alias {{ item.key }}="
   with_dict: "{{ server_bash_aliases }}"
-
-- name: Include Aliases for All Users
-  lineinfile:
-    dest="/etc/bash.bashrc"
-    line="source /etc/bash_aliases"
-    state="present"
 
 - name: Update Base System
   command: /bin/true
