@@ -53,6 +53,23 @@
   with_items: "{{ server_ssh_known_host_results.results }}"
   when: item.stdout == ""
 
+- name: Setup our Aliases
+  lineinfile:
+    dest="/etc/bash_aliases"
+    create="yes"
+    owner="root"
+    group="root"
+    mode="0644"
+    line='alias {{ item.key }}="{{ item.value }}"'
+    regexp="^alias {{ item.key }}="
+  with_dict: "{{ server_bash_aliases }}"
+
+- name: Include Aliases for All Users
+  lineinfile:
+    dest="/etc/bash.bashrc"
+    line="source /etc/bash_aliases"
+    state="present"
+
 - name: Update Base System
   command: /bin/true
   notify: server update
