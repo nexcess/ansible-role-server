@@ -42,7 +42,7 @@
     path="{{ server_ssh_known_hosts_file }}"
     state="touch"
 
-- name: Check Host Name Availability
+- name: Suck in Known Hosts
   shell: "ssh-keygen -f {{ server_ssh_known_hosts_file }} -F {{ item }}"
   with_items: "{{ server_ssh_known_hosts }}"
   register: server_ssh_known_host_results
