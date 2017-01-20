@@ -20,4 +20,3 @@ dependencies:
     when: ntp_included
   - name: "nexcess.kernelcare"
     src: "git+git@github.com:nexcess/ansible-role-kernelcare.git"
-    when: nex_env == "prod"
