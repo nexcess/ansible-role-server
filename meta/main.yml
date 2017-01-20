@@ -18,3 +18,5 @@ dependencies:
   - name: "nexcess.ntp"
     src: "git+git@github.com:nexcess/ansible-role-ntp.git"
     when: ntp_included
+  - name: "nexcess.kernelcare"
+    src: "git+git@github.com:nexcess/ansible-role-kernelcare.git"
