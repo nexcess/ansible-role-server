@@ -6,7 +6,7 @@
 
 # Public
 {% for host in play_hosts %}
-{% if 'frontnet_addr' in hostvars[host] %}
+{% if 'frontnet_addr' in hostvars[host] and hostvars[host]['frontnet_addr'] != "" %}
 {{ hostvars[host]['frontnet_addr'] }} {{ host }} {{ host.split('.')[0] }}
 {% endif %}
 {% endfor %}
