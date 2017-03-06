@@ -18,4 +18,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+perl -pi -e 's/nexcess_firewall::cidr_blocks/nexcess_firewall_cidr_blocks/g' network.yaml
+
 popd 1>/dev/null
