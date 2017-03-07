@@ -45,7 +45,7 @@ server_pam:
     hard: 999999
 server_sysctl:
   - key: "net.core.somaxconn"
-    value: 999999
+    value: 65535
   - key: "net.ipv4.ip_local_port_range"
     value: "10240 62000"
   - key: "fs.file-max"
