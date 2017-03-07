@@ -13,12 +13,15 @@ galaxy_info:
 dependencies:
   - name: "nexcess.firewall"
     src: "git+git@github.com:nexcess/ansible-role-firewall.git"
+    when: firewall_included
   - name: "nexcess.repo-epel"
     src: "git+git@github.com:nexcess/ansible-role-repo-epel.git"
+    when: epel_included
   - name: "nexcess.ntp"
     src: "git+git@github.com:nexcess/ansible-role-ntp.git"
     when: ntp_included
   - name: "nexcess.kernelcare"
     src: "git+git@github.com:nexcess/ansible-role-kernelcare.git"
+    when: kernelcare_included
   - name: "nexcess.repo-nexcess"
     src: "git+git@github.com:nexcess/ansible-role-repo-nexcess.git"
