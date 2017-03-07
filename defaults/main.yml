@@ -3,6 +3,10 @@
 # Playbook Defaults
 backnet_host: "{{ inventory_hostname }}-int"
 
+# Base Deps
+kernelcare_included: true
+epel_included: true
+
 # NTP Defaults
 ntp_included: true
 ntp_timezone: "America/Detroit"
@@ -54,6 +58,7 @@ server_ssh_known_hosts:
 server_bash_aliases: {}
 
 # Firewall Defaults
+firewall_included: true
 firewall_v4_default_rules:
   001 default policies:
     - "-P INPUT ACCEPT"
