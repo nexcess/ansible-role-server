@@ -1,6 +1,1 @@
 ---
-
-# NTP Defaults
-ntp_enabled: true
-ntp_timezone: "America/Detroit"
-ntp_area: "north-america"
