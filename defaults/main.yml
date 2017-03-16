@@ -7,11 +7,6 @@ backnet_host: "{{ inventory_hostname }}-int"
 kernelcare_included: true
 epel_included: true
 
-# NTP Defaults
-ntp_included: true
-ntp_timezone: "America/Detroit"
-ntp_area: "north-america"
-
 # Server Defaults
 server_update: false
 server_packages:
