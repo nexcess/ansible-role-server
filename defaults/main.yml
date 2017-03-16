@@ -64,7 +64,8 @@ firewall_v4_default_rules:
     - "-P INPUT ACCEPT"
     - "-P OUTPUT ACCEPT"
     - "-P FORWARD DROP"
-  004 allow local access in general:
+  002 allow loopback:
+    - "-A INPUT -i lo -s 127.0.0.0/8 -d 127.0.0.0/8 -j ACCEPT"
     - "-A INPUT -s {{ frontnet_addr | default('127.0.0.1') }} -j ACCEPT"
     - "-A INPUT -s {{ backnet_addr | default('127.0.0.1') }} -j ACCEPT"
   003 allow ping replies:
@@ -72,5 +73,7 @@ firewall_v4_default_rules:
     - "-A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT"
   100 allow established related:
     - "-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT"
-  900 drop everything:
+  200 allow ssh:
+    - "-A INPUT -p tcp --dport ssh -j ACCEPT"
+  999 drop everything:
     - "-P INPUT DROP"
