@@ -64,9 +64,7 @@ firewall_v4_default_rules:
     - "-P INPUT ACCEPT"
     - "-P OUTPUT ACCEPT"
     - "-P FORWARD DROP"
-  002 allow local access in general:
-    - "-A INPUT -i lo -j ACCEPT"
-    - "-A INPUT -s 127.0.0.1 -j ACCEPT"
+  004 allow local access in general:
     - "-A INPUT -s {{ frontnet_addr | default('127.0.0.1') }} -j ACCEPT"
     - "-A INPUT -s {{ backnet_addr | default('127.0.0.1') }} -j ACCEPT"
   003 allow ping replies:
@@ -74,10 +72,5 @@ firewall_v4_default_rules:
     - "-A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT"
   100 allow established related:
     - "-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT"
-  200 allow ssh limiting brute force:
-    - "-I INPUT -p tcp -d {{ frontnet_addr | default('127.0.0.1') }} --dport 22 -m state --state NEW -m recent --set"
-    - "-I INPUT -p tcp -d {{ frontnet_addr | default('127.0.0.1') }} --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 4 -j DROP"
-    - "-I INPUT -p tcp -d {{ backnet_addr | default('127.0.0.1') }} --dport 22 -m state --state NEW -m recent --set"
-    - "-I INPUT -p tcp -d {{ backnet_addr | default('127.0.0.1') }} --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 4 -j DROP"
   900 drop everything:
     - "-P INPUT DROP"
