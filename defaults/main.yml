@@ -54,3 +54,8 @@ server_bash_aliases: {}
 
 # Firewall Defaults
 firewall_included: true
+
+# Set a default SSH firewall rule
+nexcess_firewall_cidr_blocks:
+  office_and_vpn:
+    - '0.0.0.0/0'
