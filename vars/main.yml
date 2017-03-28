@@ -5,9 +5,6 @@ ntp_included: true
 ntp_timezone: "America/Detroit"
 ntp_area: "north-america"
 
-# Default to open SSH
-ssh_allow_list: "{{ nexcess_firewall_cidr_blocks | default({'office_and_vpn': ['0.0.0.0/0']}, true) }}"
-
 # Firewall Defaults
 firewall_v4_default_rules:
   001 default policies:
@@ -24,7 +21,7 @@ firewall_v4_default_rules:
   100 allow established related:
     - "-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT"
   200 allow ssh:
-    - "-A INPUT -p tcp -s {{ ssh_allow_list }} --dport ssh -j ACCEPT"
+    - "-A INPUT -p tcp -s {{ nexcess_firewall_cidr_blocks.office_and_vpn | join(,) }} --dport ssh -j ACCEPT"
     - "-A INPUT -p tcp --dport ssh -j ACCEPT"
   999 drop everything:
     - "-P INPUT DROP"
