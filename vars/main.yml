@@ -22,6 +22,5 @@ firewall_v4_default_rules:
     - "-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT"
   200 allow ssh:
     - "-A INPUT -p tcp -s {{ nexcess_firewall_cidr_blocks.office_and_vpn | join(',') }} --dport ssh -j ACCEPT"
-    - "-A INPUT -p tcp --dport ssh -j ACCEPT"
   999 drop everything:
     - "-P INPUT DROP"
