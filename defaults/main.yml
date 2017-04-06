@@ -9,6 +9,7 @@ epel_included: true
 
 # Server Defaults
 server_update: false
+server_selinux_enforcing: false
 server_packages:
   - "iptables"
   - "iptables-services"
