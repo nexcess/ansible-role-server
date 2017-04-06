@@ -1,5 +1,10 @@
 ---
 
+- name: Set SELinux
+  selinux:
+    state="enforcing"
+  when: server_selinux_enforcing
+
 - name: Set the Hostname
   hostname:
     name="{{ inventory_hostname }}"
