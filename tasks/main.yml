@@ -2,6 +2,7 @@
 
 - name: Set SELinux
   selinux:
+    policy="targeted"
     state="enforcing"
   when: server_selinux_enforcing
 
