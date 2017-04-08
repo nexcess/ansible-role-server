@@ -72,6 +72,13 @@
     regexp="^alias {{ item.key }}="
   with_dict: "{{ server_bash_aliases }}"
 
+- name: Make Sure firewalld is OFF
+  servivce:
+    name="firewalld"
+    enabled="no"
+    state="stopped"
+  when: firewall_included
+
 - name: Update Base System
   command: /bin/true
   notify: server update
