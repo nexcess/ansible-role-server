@@ -28,6 +28,7 @@ server_packages:
   - "unzip"
   - "bzip2"
   - "net-tools"
+  - "policycoreutils-python"
 server_extra_packages: []
 server_extra_path:
 server_services_unused: []
