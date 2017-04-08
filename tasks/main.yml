@@ -73,7 +73,7 @@
   with_dict: "{{ server_bash_aliases }}"
 
 - name: Make Sure firewalld is OFF
-  servivce:
+  service:
     name="firewalld"
     enabled="no"
     state="stopped"
