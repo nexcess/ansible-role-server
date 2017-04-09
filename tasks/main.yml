@@ -78,6 +78,14 @@
     enabled="no"
     state="stopped"
   when: firewall_included
+  register: firewalld
+
+- name: Reload Firewalling Since Firewalld Wiped Rules
+  command: /bin/true
+  notify: restart firewall
+  when:
+    - firewall_included
+    - firewalld.changed
 
 - name: Update Base System
   command: /bin/true
