@@ -79,6 +79,7 @@
     state="stopped"
   when: firewall_included
   register: firewalld
+  ignore_errors: true
 
 - name: Reload Firewalling Since Firewalld Wiped Rules
   command: /bin/true
