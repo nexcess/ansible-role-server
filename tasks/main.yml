@@ -1,11 +1,5 @@
 ---
 
-- name: Set SELinux
-  selinux:
-    policy="targeted"
-    state="enforcing"
-  when: server_selinux_enforcing
-
 - name: Set the Hostname
   hostname:
     name="{{ inventory_hostname }}"
@@ -25,6 +19,12 @@
     disablerepo="*"
     enablerepo="epel,base,updates,nexcess,extras"
   with_items: "{{ server_packages + server_extra_packages }}"
+
+- name: Set SELinux
+  selinux:
+    policy="targeted"
+    state="enforcing"
+  when: server_selinux_enforcing
 
 - name: Turn Off Unused Services
   service:
