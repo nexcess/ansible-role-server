@@ -30,6 +30,7 @@ server_packages:
   - "net-tools"
   - "screen"
   - "policycoreutils-python"
+  - "libselinux-python"
 server_extra_packages: []
 server_extra_path:
 server_services_unused: []
