@@ -8,6 +8,9 @@
     value="{{ item.value.soft }}"
     use_max="yes"
   with_dict: "{{ server_pam }}"
+  tags:
+    - pam
+    - pam-limits
 
 - name: Set Base PAM Limits (Hard)
   pam_limits:
@@ -17,6 +20,9 @@
     value="{{ item.value.hard }}"
     use_max="yes"
   with_dict: "{{ server_pam }}"
+  tags:
+    - pam
+    - pam-limits
 
 - name: Set Base Sysctl
   sysctl:
@@ -28,6 +34,7 @@
     reload="yes"
   with_items: "{{ server_sysctl }}"
   tags:
+    - kernel
     - kernel-sysctl 
 
 - name: Set Extra Sysctl
@@ -40,4 +47,5 @@
     reload="yes"
   with_items: "{{ server_extra_sysctl }}"
   tags:
+    - kernel
     - kernel-sysctl
