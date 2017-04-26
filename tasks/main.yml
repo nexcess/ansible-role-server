@@ -39,7 +39,7 @@
 
 - name: Setup /etc/hosts
   template:
-    src="hosts.j2"
+    src="etc/hosts.j2"
     dest="/etc/hosts"
     owner="root"
     group="root"
@@ -61,7 +61,7 @@
   with_items: "{{ server_ssh_known_host_results.results }}"
   when: item.stdout == ""
 
-- name: Setup our Aliases
+- name: Setup Bash Aliases
   lineinfile:
     dest="/etc/profile.d/aliases.sh"
     create="yes"
@@ -71,6 +71,23 @@
     line='alias {{ item.key }}="{{ item.value }}"'
     regexp="^alias {{ item.key }}="
   with_dict: "{{ server_bash_aliases }}"
+  tags:
+    - configuration
+    - bash
+    - bash-aliases
+
+- name: Setup Bash History
+  template:
+    src="etc/profile.d/history.j2"
+    dest="/etc/profile.d/history.sh"
+    owner="root"
+    group="root"
+    mode="0644"
+  when: server_bash_history
+  tags:
+    - configuration
+    - bash
+    - bash-history
 
 - name: Make Sure firewalld is OFF
   service:

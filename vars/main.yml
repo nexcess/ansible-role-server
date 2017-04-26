@@ -1,5 +1,12 @@
 ---
 
+#  Bash History Defaults
+server_bash_histtimeformat: "%c: "
+server_bash_histcontrol: ""
+server_bash_histappend: true
+server_bash_histsize: 65536
+server_bash_histfilesize: 65536
+
 # NTP Defaults
 ntp_included: true
 ntp_timezone: "America/Detroit"

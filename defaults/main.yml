@@ -66,6 +66,7 @@ server_ssh_known_hosts_file: "/etc/ssh/ssh_known_hosts"
 server_ssh_known_hosts:
   - "github.com"
 server_bash_aliases: {}
+server_bash_history: true
 
 # Firewall Defaults
 firewall_included: true
