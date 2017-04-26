@@ -29,7 +29,7 @@
     - packages
     - extras
 
-- name: Set SELinux
+- name: Set SELinux Enforcing
   selinux:
     policy="targeted"
     state="enforcing"
@@ -52,15 +52,21 @@
     - services
     - unused-services
 
-
 - include: limits.yml
   when: server_adjust_limits
   tags:
     - environment
     - resources
-    - limits
     - pam
     - pam-limits
+
+- include: sysctl.yml
+  when: server_set_sysctl_base
+  tags:
+    - environment
+    - resources
+    - kernel
+    - kernel-sysctl
 
 - name: Setup /etc/hosts
   template:
