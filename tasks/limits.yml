@@ -27,6 +27,8 @@
     ignoreerrors="yes"
     reload="yes"
   with_items: "{{ server_sysctl }}"
+  tags:
+    - kernel-sysctl 
 
 - name: Set Extra Sysctl
   sysctl:
@@ -37,3 +39,5 @@
     ignoreerrors="yes"
     reload="yes"
   with_items: "{{ server_extra_sysctl }}"
+  tags:
+    - kernel-sysctl

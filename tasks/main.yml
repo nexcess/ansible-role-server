@@ -4,6 +4,9 @@
   hostname:
     name="{{ inventory_hostname }}"
   ignore_errors: "yes"
+  tags:
+    - environment
+    - hostname
 
 - name: Set the Global PATH
   lineinfile:
@@ -11,6 +14,9 @@
     state="present"
     line="PATH={{ server_extra_path }}:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
   when: server_extra_path != ''
+  tags:
+    - environment
+    - paths
 
 - name: Install Extras
   yum:
@@ -19,12 +25,20 @@
     disablerepo="*"
     enablerepo="epel,base,updates,nexcess,extras"
   with_items: "{{ server_packages + server_extra_packages }}"
+  tags:
+    - packages
+    - extras
 
 - name: Set SELinux
   selinux:
     policy="targeted"
     state="enforcing"
   when: server_selinux_enforcing
+  tags:
+    - environment
+    - security
+    - selinux
+    - selinux-enforcing
 
 - name: Turn Off Unused Services
   service:
@@ -33,9 +47,20 @@
     state="stopped"
   with_items: "{{ server_services_unused }}"
   ignore_errors: yes
+  tags:
+    - security
+    - services
+    - unused-services
+
 
 - include: limits.yml
   when: server_adjust_limits
+  tags:
+    - environment
+    - resources
+    - limits
+    - pam
+    - pam-limits
 
 - name: Setup /etc/hosts
   template:
@@ -44,22 +69,37 @@
     owner="root"
     group="root"
     mode="0644"
+  tags:
+    - environment
+    - hosts
 
 - name: Make Sure Known Hosts File Exists
   file:
     path="{{ server_ssh_known_hosts_file }}"
     state="touch"
+  tags:
+    - environment
+    - ssh
+    - ssh-known-hosts
 
 - name: Suck in Known Hosts
   shell: "ssh-keygen -f {{ server_ssh_known_hosts_file }} -F {{ item }}"
   with_items: "{{ server_ssh_known_hosts }}"
   register: server_ssh_known_host_results
   ignore_errors: yes
+  tags:
+    - environment
+    - ssh
+    - ssh-known-hosts
 
 - name: Scan the Public Key
   shell: "{{ server_ssh_known_hosts_command }} {{ item.item }} >> {{ server_ssh_known_hosts_file }}"
   with_items: "{{ server_ssh_known_host_results.results }}"
   when: item.stdout == ""
+  tags:
+    - environment
+    - ssh
+    - ssh-public-keys
 
 - name: Setup Bash Aliases
   lineinfile:
@@ -72,7 +112,7 @@
     regexp="^alias {{ item.key }}="
   with_dict: "{{ server_bash_aliases }}"
   tags:
-    - configuration
+    - environment
     - bash
     - bash-aliases
 
@@ -85,7 +125,7 @@
     mode="0644"
   when: server_bash_history
   tags:
-    - configuration
+    - environment
     - bash
     - bash-history
 
@@ -97,6 +137,10 @@
   when: firewall_included
   register: firewalld
   ignore_errors: true
+  tags:
+    - environment
+    - bash
+    - bash-history
 
 - name: Reload Firewalling Since Firewalld Wiped Rules
   command: /bin/true
@@ -104,8 +148,17 @@
   when:
     - firewall_included
     - firewalld.changed
+  tags:
+    - network
+    - security
+    - firewall
 
 - name: Update Base System
   command: /bin/true
   notify: server update
   when: server_update
+  tags:
+    - environment
+    - security
+    - updates
+    - yum-updates
