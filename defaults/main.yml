@@ -49,6 +49,12 @@ server_pam:
   nproc:
     soft: 999999
     hard: 999999
+  core:
+    soft: 0
+    hard: 0
+  priority:
+    soft: 4
+    hard: 4
 server_set_sysctl_base: true
 server_sysctl:
   - key: "net.core.somaxconn"
@@ -75,7 +81,7 @@ server_sysctl:
     value: 1
   - key: "kernel.panic"
     value: 90
-server_set_sysctl_10g: False
+server_set_sysctl_10g: false
 server_sysctl_10g:
   - key: "net.core.rmem_max"
     value: 16777216
