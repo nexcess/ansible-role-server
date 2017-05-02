@@ -110,8 +110,6 @@ server_bash_history: true
 
 # Firewall Defaults
 firewall_included: true
-firewall_v4_configure: true
-firewall_v6_configure: true
 
 # Set a default SSH firewall rule
 nexcess_firewall_cidr_blocks:
