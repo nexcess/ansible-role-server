@@ -21,7 +21,7 @@ server_packages:
   - "iputils"
   - "jq"
   - "libselinux-python"
-  - "selinux-policy"
+  - "selinux-policy-targeted"
   - "lsof"
   - "lynx"
   - "mailx"
