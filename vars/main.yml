@@ -25,7 +25,7 @@ firewall_v4_default_rules:
     - "-A INPUT -s {{ backnet_addr | default('127.0.0.1', true) }} -j ACCEPT"
   003 allow ping replies:
     - "-A INPUT -p icmp --icmp-type echo-request -j ACCEPT"
-#    - "-A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT"
+    - "-A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT"
   100 allow established related:
     - "-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT"
   200 allow ssh:
@@ -46,7 +46,7 @@ firewall_v6_default_rules:
     - "-A INPUT -s {{ backnet_ipv6 | default('::1/128', true) }} -j ACCEPT"
   003 allow ping replies:
     - "-A INPUT -p icmpv6 --icmpv6-type echo-request -j ACCEPT"
-#    - "-A OUTPUT -p icmpv6 --icmpv6-type echo-reply -j ACCEPT"
+    - "-A OUTPUT -p icmpv6 --icmpv6-type echo-reply -j ACCEPT"
   100 allow established related:
     - "-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT"
   999 drop everything:
