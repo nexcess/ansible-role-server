@@ -13,6 +13,7 @@ ntp_timezone: "America/Detroit"
 ntp_area: "north-america"
 
 # Firewall Defaults
+firewall_v4_configure: true
 firewall_v4_default_rules:
   001 default policies:
     - "-P INPUT ACCEPT"
@@ -30,5 +31,23 @@ firewall_v4_default_rules:
   200 allow ssh:
     - "-A INPUT -p tcp -s {{ nexcess_firewall_cidr_blocks.office_and_vpn | join(',') }} --dport ssh -j ACCEPT"
     - "-A INPUT -p tcp -s {{ nexcess_firewall_cidr_blocks.login_servers | join(',') }} --dport ssh -j ACCEPT"
+  999 drop everything:
+    - "-P INPUT DROP"
+
+firewall_v6_configure: true
+firewall_v6_default_rules:
+  001 default policies:
+    - "-P INPUT ACCEPT"
+    - "-P OUTPUT ACCEPT"
+    - "-P FORWARD DROP"
+  002 allow loopback:
+    - "-A INPUT -i lo -s ::1/128 -d ::1/128 -j ACCEPT"
+    - "-A INPUT -s {{ frontnet_ipv6 | default('::1/128', true) }} -j ACCEPT"
+    - "-A INPUT -s {{ backnet_ipv6 | default('::1/128', true) }} -j ACCEPT"
+  003 allow ping replies:
+    - "-A INPUT -p icmpv6 --icmpv6-type echo-request -j ACCEPT"
+    - "-A OUTPUT -p icmpv6 --icmpv6-type echo-reply -j ACCEPT"
+  100 allow established related:
+    - "-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT"
   999 drop everything:
     - "-P INPUT DROP"
