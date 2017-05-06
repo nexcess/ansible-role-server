@@ -24,6 +24,8 @@
     state="present"
     disablerepo="*"
     enablerepo="epel,base,updates,nexcess,extras"
+    skip_broken: yes
+    update_cache: yes
   with_items: "{{ server_packages + server_extra_packages }}"
   tags:
     - packages
