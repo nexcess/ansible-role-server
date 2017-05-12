@@ -40,6 +40,7 @@ server_packages:
   - "unzip"
   - "vim"
   - "bind-utils"
+  - "s3cmd"
 server_extra_packages: []
 server_extra_path:
 server_services_unused: []
