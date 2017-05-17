@@ -10,7 +10,6 @@ server_bash_histfilesize: 65536
 # NTP Defaults
 ntp_included: true
 ntp_timezone: "America/Detroit"
-ntp_area: "north-america"
 
 # Firewall Defaults
 firewall_v4_configure: true
