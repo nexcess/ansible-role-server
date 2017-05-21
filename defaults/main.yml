@@ -82,6 +82,8 @@ server_sysctl:
     value: 1048576
   - key: "net.ipv4.ip_local_port_range"
     value: "10240 62000"
+  - key: "net.ipv6.route.max_size"
+    value: 16384
   - key: "fs.file-max"
     value: 1048576
   - key: "vm.panic_on_oom"
