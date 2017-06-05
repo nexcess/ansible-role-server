@@ -1,6 +1,6 @@
 ---
 
-#  Bash History Defaults
+# Bash History Defaults
 server_bash_histtimeformat: "%c: "
 server_bash_histcontrol: ""
 server_bash_histappend: true
@@ -30,6 +30,7 @@ firewall_v4_default_rules:
   200 allow ssh:
     - "-A INPUT -p tcp -s {{ nexcess_firewall_cidr_blocks.office_and_vpn | join(',') }} --dport ssh -j ACCEPT"
     - "-A INPUT -p tcp -s {{ nexcess_firewall_cidr_blocks.login_servers | join(',') }} --dport ssh -j ACCEPT"
+    - "-A INPUT -p tcp -s {{ vagrant_hostv4 }} --dport ssh -j ACCEPT"
   999 drop everything:
     - "-P INPUT DROP"
 
