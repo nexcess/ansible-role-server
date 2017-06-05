@@ -122,6 +122,10 @@ firewall_included: true
 # Set a default SSH firewall rule
 nexcess_firewall_cidr_blocks:
   login_servers:
-    - '0.0.0.0/0'
+    - "0.0.0.0/0"
   office_and_vpn:
-    - '0.0.0.0/0'
+    - "0.0.0.0/0"
+
+# Vagrant env vars
+vagrant_hostv4: "127.0.0.1"
+vagrant_hostv6: "::1/128"
