@@ -22,6 +22,8 @@ dependencies:
     when: ntp_included
   - name: "nexcess.kernelcare"
     src: "git+git@github.com:nexcess/ansible-role-kernelcare.git"
-    when: kernelcare_included
+    when:
+      - kernelcare_included
+      - nex_env_target is undefined or nex_env_target != "vagrant"
   - name: "nexcess.repo-nexcess"
     src: "git+git@github.com:nexcess/ansible-role-repo-nexcess.git"
