@@ -4,7 +4,7 @@
 backnet_host: "{{ inventory_hostname }}-int"
 
 # Base Deps
-kernelcare_included: true
+kernelcare_included: false
 epel_included: true
 
 # Server Defaults
