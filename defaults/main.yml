@@ -45,6 +45,7 @@ server_packages:
   - "vim"
   - "bind-utils"
   - "s3cmd"
+  - "python-pip"
 server_extra_packages: []
 server_extra_path:
 server_services_unused: []
