@@ -14,9 +14,14 @@
     option="metalink"
     state="absent"
 
+- name: Set the Mirror Target
+  set_fact:
+    server_epel_mirror="imirror.us-midwest-1.nexcess.net"
+  when: nex_env_target == 'jarvis'
+
 - name: Add in the Nexcess BaseURL
   ini_file:
     path="{{ epel_repofile_path }}"
     section="epel"
     option="baseurl"
-    value="https://imirror.us-midwest-1.nexcess.net/epel/$releasever/$basearch/"
+    value="https://{{ server_epel_mirror }}/epel/$releasever/$basearch/"
