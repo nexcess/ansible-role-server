@@ -17,7 +17,7 @@
 - name: Set the Mirror Target
   set_fact:
     server_epel_mirror="imirror.us-midwest-1.nexcess.net"
-  when: nex_env_target == 'jarvis'
+  when: nex_env_target is defined and nex_env_target == 'jarvis'
 
 - name: Add in the Nexcess BaseURL
   ini_file:
