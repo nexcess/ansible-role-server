@@ -10,6 +10,8 @@ epel_included: true
 # Server Defaults
 server_update: false
 server_selinux_enforcing: false
+server_epel_override: true
+server_epel_mirror: "mirror.us-midwest-1.nexcess.net"
 server_packages:
   - "bash-completion"
   - "bind-utils"
@@ -50,7 +52,6 @@ server_extra_packages: []
 server_extra_path:
 server_services_unused: []
 server_adjust_limits: true
-server_override_epel: true
 server_pam:
   nofile:
     soft: 999999

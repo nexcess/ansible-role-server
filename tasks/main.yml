@@ -1,7 +1,7 @@
 ---
 
 - include: epel-override.yml
-  when: server_override_epel
+  when: server_epel_override
 
 - name: Set the Hostname
   hostname:
