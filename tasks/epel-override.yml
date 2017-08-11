@@ -1,0 +1,16 @@
+---
+
+- name: Remove Mirrorlist for EPEL to Perfer Nexcess
+  ini_file:
+    path="{{ epel_repofile_path }}"
+    section="epel"
+    option="mirrorlist"
+    state="absent"
+
+- name: Add in the Nexcess BaseURL
+  ini_file:
+    path="{{ epel_repofile_path }}"
+    section="epel"
+    option="baseurl"
+    value="https://imirror.{{ nex_zone }}.nexcess.net/epel/$releasever/$basearch/"
+    backup=false

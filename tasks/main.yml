@@ -1,5 +1,8 @@
 ---
 
+- include: epel-override.yml
+  when: server_override_epel
+
 - name: Set the Hostname
   hostname:
     name="{{ inventory_hostname }}"
