@@ -19,4 +19,4 @@
     path="{{ epel_repofile_path }}"
     section="epel"
     option="baseurl"
-    value="https://imirror.{{ nex_zone }}.nexcess.net/epel/$releasever/$basearch/"
+    value="https://imirror.us-midwest-1.nexcess.net/epel/$releasever/$basearch/"
