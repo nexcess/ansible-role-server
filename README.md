@@ -15,6 +15,10 @@ Base Ansible role for a Nexcess "server".  This role should be common across all
 
 Lots, but just about everything is overridable.  See [defaults/main.yml](https://github.com/nexcess/ansible-role-server/blob/master/defaults/main.yml)
 
+
+## Requirements
+- Ansible-playbook 2.3 or greater.
+
 ## Dependencies
 
 - nexcess.firewall
