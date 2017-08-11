@@ -49,6 +49,7 @@ server_extra_packages: []
 server_extra_path:
 server_services_unused: []
 server_adjust_limits: true
+server_override_epel: true
 server_pam:
   nofile:
     soft: 999999
