@@ -1,5 +1,7 @@
 ---
 
+- include: epel-override.yml
+
 - name: Set the Hostname
   hostname:
     name="{{ inventory_hostname }}"
