@@ -13,4 +13,3 @@
     section="epel"
     option="baseurl"
     value="https://imirror.{{ nex_zone }}.nexcess.net/epel/$releasever/$basearch/"
-    backup=false
