@@ -6,7 +6,7 @@
 - name: Set the Hostname
   hostname:
     name="{{ inventory_hostname }}"
-  ignore_errors: "yes"
+  failed_when: false
   tags:
     - environment
     - hostname
@@ -106,7 +106,7 @@
   register: server_ssh_known_host_results
   # ignoring errors here since `Scan the Public Key' below will add any
   # missing public key into {{ server_ssh_known_hosts_file }}
-  ignore_errors: yes
+  failed_when: false
   tags:
     - environment
     - ssh
@@ -156,7 +156,7 @@
     state="stopped"
   when: firewall_included
   register: firewalld
-  ignore_errors: true
+  failed_when: false
   tags:
     - environment
     - bash
