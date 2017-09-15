@@ -176,7 +176,7 @@
 - name: Update Base System
   command: /bin/true
   notify: server update
-  when: server_update
+  when: server_update or nex_env != "dev"
   tags:
     - environment
     - security
