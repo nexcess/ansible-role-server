@@ -23,6 +23,7 @@ Lots, but just about everything is overridable.  See [defaults/main.yml](https:/
 
 - nexcess.firewall
 - nexcess.repo-epel
+- nexcess.repo-remi
 - nexcess.ntp
 
 ## License
