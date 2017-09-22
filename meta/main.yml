@@ -17,6 +17,9 @@ dependencies:
   - name: "nexcess.repo-epel"
     src: "git+git@github.com:nexcess/ansible-role-repo-epel.git"
     when: epel_included
+  - name: "nexcess.repo-remi"
+    src: "git+git@github.com:nexcess/ansible-role-repo-remi.git"
+    when: remi_included
   - name: "nexcess.ntp"
     src: "git+git@github.com:nexcess/ansible-role-ntp.git"
     when: ntp_included
