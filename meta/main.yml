@@ -12,18 +12,18 @@ galaxy_info:
         - "7"
 dependencies:
   - name: "nexcess.firewall"
-    src: "git+git@github.com:nexcess/ansible-role-firewall.git"
+    src: "git+https@https://github.com/nexcess/ansible-role-firewall.git"
     when: firewall_included
   - name: "nexcess.repo-epel"
-    src: "git+git@github.com:nexcess/ansible-role-repo-epel.git"
+    src: "git+https@https://github.com/nexcess/ansible-role-repo-epel.git"
     when: epel_included
   - name: "nexcess.ntp"
-    src: "git+git@github.com:nexcess/ansible-role-ntp.git"
+    src: "git+https@https://github.com/nexcess/ansible-role-ntp.git"
     when: ntp_included
   - name: "nexcess.kernelcare"
-    src: "git+git@github.com:nexcess/ansible-role-kernelcare.git"
+    src: "git+https@https://github.com/nexcess/ansible-role-kernelcare.git"
     when:
       - kernelcare_included
       - nex_env_target is undefined or nex_env_target != "vagrant"
   - name: "nexcess.repo-nexcess"
-    src: "git+git@github.com:nexcess/ansible-role-repo-nexcess.git"
+    src: "git+https@https://github.com/nexcess/ansible-role-repo-nexcess.git"
