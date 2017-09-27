@@ -52,6 +52,16 @@
     - selinux
     - selinux-enforcing
 
+- name: Disable SELinux
+  selinux:
+    state="disabled"
+  when: not server_selinux_enforcing
+  tags:
+    - environment
+    - security
+    - selinux
+    - selinux-enforcing
+
 - name: Turn Off Unused Services
   service:
     name="{{ item }}"
