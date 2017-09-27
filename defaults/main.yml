@@ -9,7 +9,7 @@ epel_included: true
 remi_included: true
 
 # Server Defaults
-server_update: false
+server_update: true
 server_selinux_enforcing: false
 server_epel_override: true
 server_epel_mirror: "mirror.us-midwest-1.nexcess.net"
