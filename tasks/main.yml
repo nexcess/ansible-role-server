@@ -184,8 +184,8 @@
     - firewall
 
 - name: Update Base System
-  command: /bin/true
-  notify: server update
+  yum: name=* update_cache=yes state=latest skip_broken=yes
+  when: server_update or (nex_env is defined and nex_env != "dev")
   tags:
     - environment
     - security
