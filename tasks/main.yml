@@ -184,8 +184,12 @@
     - firewall
 
 - name: Update Base System
-  yum: name=* update_cache=yes state=latest skip_broken=yes
-  when: server_update or (nex_env is defined and nex_env != "dev")
+  yum:
+    name=*
+    update_cache=yes
+    state=latest
+    skip_broken=yes
+  when: server_update
   tags:
     - environment
     - security
