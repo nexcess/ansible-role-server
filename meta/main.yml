@@ -28,5 +28,3 @@ dependencies:
     when:
       - kernelcare_included
       - nex_env_target is undefined or nex_env_target != "vagrant"
-  - name: "nexcess.repo-nexcess"
-    src: "https://github.com/nexcess/ansible-role-repo-nexcess.git"
