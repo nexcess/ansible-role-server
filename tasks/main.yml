@@ -26,7 +26,7 @@
     name="{{ item }}"
     state="present"
     disablerepo="*"
-    enablerepo="epel,base,updates,extras"
+    enablerepo="epel,remi,base,updates,extras"
     skip_broken=yes
     update_cache=yes
   with_items: "{{ server_packages + server_extra_packages }}"
