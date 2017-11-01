@@ -148,8 +148,8 @@
 
 - name: Setup Bash History
   template:
-    src="etc/profile.d/history.j2"
-    dest="/etc/profile.d/history.sh"
+    src="etc/profile.d/shell_history.j2"
+    dest="/etc/profile.d/shell_history.sh"
     owner="root"
     group="root"
     mode="0644"

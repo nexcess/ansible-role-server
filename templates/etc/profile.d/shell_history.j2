@@ -1,0 +1,42 @@
+# {{ ansible_managed }}
+if [[ -n $BASH_VERSION ]]; then
+
+  # configure history time format.
+  # See bash(1) for more options
+  HISTTIMEFORMAT="{{ server_bash_histtimeformat }}"
+
+  # control history file name
+  HISTFILE={{ server_bash_histfile }}
+
+  HISTCONTROL={{ server_bash_histcontrol }}
+
+  # append to the history file, don't overwrite it
+  {% if server_bash_histappend %}
+  shopt -s histappend
+  {% endif %}
+  # save all lines of a multiple-line command in the same history entry
+  shopt -s cmdhist
+
+  # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+  HISTSIZE={{ server_bash_histsize }}
+  HISTFILESIZE={{ server_bash_histfilesize }}
+
+  readonly HISTTIMEFORMAT
+  readonly HISTFILE
+  readonly HISTCONTROL
+  readonly HISTSIZE
+  readonly HISTFILESIZE
+
+fi
+
+if [[ -n $ZSH_VERSION ]]; then
+  HISTSIZE={{ server_bash_histsize }}
+  SAVEHIST={{ server_bash_histfilesize }}
+  HISTFILE=~/.zsh_history
+  setopt APPEND_HISTORY
+  setopt EXTENDED_HISTORY
+
+  readonly HISTSIZE
+  readonly SAVEHIST
+  readonly HISTFILE
+fi
