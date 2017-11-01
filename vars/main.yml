@@ -1,7 +1,8 @@
 ---
 
 # Bash History Defaults
-server_bash_histtimeformat: "%c: "
+server_bash_histtimeformat: "%F %T "
+server_bash_histfile: "~/.bash_history"
 server_bash_histcontrol: ""
 server_bash_histappend: true
 server_bash_histsize: 65536

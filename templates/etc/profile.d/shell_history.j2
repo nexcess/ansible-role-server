@@ -1,30 +1,42 @@
 # {{ ansible_managed }}
+if [[ -n $BASH_VERSION ]]; then
 
-# configure history time format.
-# See bash(1) for more options
-HISTTIMEFORMAT="{{ server_bash_histtimeformat }}"
+  # configure history time format.
+  # See bash(1) for more options
+  HISTTIMEFORMAT="{{ server_bash_histtimeformat }}"
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL={{ server_bash_histcontrol }}
+  # control history file name
+  HISTFILE={{ server_bash_histfile }}
 
-# append to the history file, don't overwrite it
-{% if server_bash_histappend %}
-shopt -s histappend
-{% endif %}
+  HISTCONTROL={{ server_bash_histcontrol }}
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE={{ server_bash_histsize }}
-HISTFILESIZE={{ server_bash_histfilesize }}
+  # append to the history file, don't overwrite it
+  {% if server_bash_histappend %}
+  shopt -s histappend
+  {% endif %}
+  # save all lines of a multiple-line command in the same history entry
+  shopt -s cmdhist
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-  . /etc/bash_completion
+  # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+  HISTSIZE={{ server_bash_histsize }}
+  HISTFILESIZE={{ server_bash_histfilesize }}
+
+  readonly HISTTIMEFORMAT
+  readonly HISTFILE
+  readonly HISTCONTROL
+  readonly HISTSIZE
+  readonly HISTFILESIZE
+
 fi
 
-readonly HISTTIMEFORMAT
-readonly HISTCONTROL
-readonly HISTSIZE
-readonly HISTFILESIZE
+if [[ -n $ZSH_VERSION ]]; then
+  HISTSIZE={{ server_bash_histsize }}
+  SAVEHIST={{ server_bash_histfilesize }}
+  HISTFILE=~/.zsh_history
+  setopt APPEND_HISTORY
+  setopt EXTENDED_HISTORY
+
+  readonly HISTSIZE
+  readonly SAVEHIST
+  readonly HISTFILE
+fi
