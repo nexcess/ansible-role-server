@@ -90,6 +90,14 @@
     - kernel
     - kernel-sysctl
 
+- include: udev.yml
+  when: server_set_udev_rules
+  tags:
+    - environment
+    - resources
+    - kernel
+    - kernel-udev
+
 - name: Setup /etc/hosts
   template:
     src="etc/hosts.j2"
