@@ -1,0 +1,29 @@
+---
+
+- name: Set base udev rules files
+  copy:
+    dest="/etc/udev/rules.d/{{ item.key }}.rules"
+    owner="root"
+    group="root"
+    mode="0644"
+    content="{{ item.value }}"
+  with_items: "{{ server_udev_rules }}"
+  notify:
+    - apply udev rules
+  tags:
+    - kernel-udev
+    - kernel-udev-base
+
+- name: Set extra udev rules files
+  copy:
+    dest="/etc/udev/rules.d/{{ item.key }}.rules"
+    owner="root"
+    group="root"
+    mode="0644"
+    content="{{ item.value }}"
+  with_items: "{{ server_extra_udev_rules }}"
+  notify:
+    - apply udev rules
+  tags:
+    - kernel-udev
+    - kernel-udev-extra

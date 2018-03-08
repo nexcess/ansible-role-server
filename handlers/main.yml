@@ -1,0 +1,4 @@
+---
+
+- name: apply udev rules
+  command: /sbin/udevadm trigger --action=change

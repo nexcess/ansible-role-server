@@ -113,6 +113,13 @@ server_sysctl_10g:
   - key: "net.ipv4.tcp_moderate_rcvbuf"
     value: 1
 server_extra_sysctl: {}
+server_set_udev_rules: true
+server_udev_rules:
+  - key: 50-ioscheduler
+    value: |
+      KERNEL=="sd[a-z]", ATTR{queue/scheduler}="noop"
+      KERNEL=="sd[a-z]", ATTR{queue/nr_requests}="256"
+server_extra_udev_rules: []
 server_ssh_known_hosts_command: "ssh-keyscan -H -T 10"
 server_ssh_known_hosts_file: "/etc/ssh/ssh_known_hosts"
 server_ssh_known_hosts:

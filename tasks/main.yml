@@ -62,6 +62,23 @@
     - selinux
     - selinux-enforcing
 
+# gnarly regex looks for rootfs (of any fs type) that doesn't already
+#  have noatime appended, special regex stuff is:
+#   \s is any whitespace char
+#   \S is any non-whitespace char
+#   \w is any alphanumeric + _ (underscore)
+#   (?!thing) is a negative lookahead assertion
+#  this assumes that "defaults" is always the first mount option for rootfs
+- name: Set noatime on filesystems
+  lineinfile:
+    dest="/etc/fstab"
+    regexp="^([^#].*\s+/\s+\w+\s+)(defaults(?!\S+noatime)\S+)(\s+.*)$"
+    line="\1\2,noatime\3"
+    backrefs="yes"
+  tags:
+    - environment
+    - mounts
+
 - name: Turn Off Unused Services
   service:
     name="{{ item }}"
@@ -89,6 +106,14 @@
     - resources
     - kernel
     - kernel-sysctl
+
+- include: udev.yml
+  when: server_set_udev_rules
+  tags:
+    - environment
+    - resources
+    - kernel
+    - kernel-udev
 
 - name: Setup /etc/hosts
   template:
