@@ -72,7 +72,7 @@
 - name: Set noatime on filesystems
   lineinfile:
     dest="/etc/fstab"
-    regexp="^([^#].*\s+/\s+\w+\s+)(defaults(?!\S+noatime))(\s+.*)$"
+    regexp="^([^#].*\s+/\s+\w+\s+)(defaults(?!\S+noatime)\S+)(\s+.*)$"
     line="\1\2,noatime\3"
     backrefs="yes"
   tags:
