@@ -39,4 +39,4 @@
   rpm_key:
     key: "https://{{ server_nexcessrepo_mirror }}/nexcess/RPM-GPG-KEY-NEXCESS"
     state: present
-  # ignore_errors: "{{ ansible_check_mode }}"
+  ignore_errors: "{{ ansible_check_mode }}"
