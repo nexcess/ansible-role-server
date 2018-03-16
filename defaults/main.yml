@@ -13,6 +13,9 @@ server_update: true
 server_selinux_enforcing: false
 server_epel_override: true
 server_epel_mirror: "mirror.us-midwest-1.nexcess.net"
+server_nexcessrepo_install: true
+server_nexcessrepo_mirror: "imirror.us-midwest-1.nexcess.net"
+server_nexcessrepo_path: "/etc/yum.repos.d/nexcess.repo"
 server_packages:
   - "bash-completion"
   - "bind-utils"

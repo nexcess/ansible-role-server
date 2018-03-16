@@ -3,6 +3,9 @@
 - include: epel-override.yml
   when: server_epel_override
 
+- include: nexcess-repo.yml
+  when: server_nexcessrepo_install
+
 - name: Set the Hostname
   hostname:
     name="{{ inventory_hostname }}"
@@ -26,7 +29,7 @@
     name="{{ item }}"
     state="present"
     disablerepo="*"
-    enablerepo="epel,remi,base,updates,extras"
+    enablerepo="nexcess,epel,remi,base,updates,extras"
     skip_broken=yes
     update_cache=yes
   with_items: "{{ server_packages + server_extra_packages }}"
