@@ -1,0 +1,42 @@
+---
+
+- name: Add name attr to nexcess repo
+  ini_file:
+    path="{{ server_nexcessrepo_path }}"
+    section="nexcess"
+    option="name"
+    value="nexcess"
+
+- name: Add baseurl attr to nexcess repo
+  ini_file:
+    path="{{ server_nexcessrepo_path }}"
+    section="nexcess"
+    option="baseurl"
+    value="https://{{ server_nexcessrepo_mirror }}/nexcess/public/production/el/$releasever/$basearch/"
+
+- name: Add enabled attr to nexcess repo
+  ini_file:
+    path="{{ server_nexcessrepo_path }}"
+    section="nexcess"
+    option="enabled"
+    value="1"
+
+- name: Add gpgkey attr to nexcess repo
+  ini_file:
+    path="{{ server_nexcessrepo_path }}"
+    section="nexcess"
+    option="gpgkey"
+    value="https://{{ server_nexcessrepo_mirror }}/nexcess/RPM-GPG-KEY-NEXCESS"
+
+- name: Add metadata_expire attr to nexcess repo
+  ini_file:
+    path="{{ server_nexcessrepo_path }}"
+    section="nexcess"
+    option="metadata_expire"
+    value="1800"
+
+- name: Import Nexcess GPG key
+  rpm_key:
+    key: "https://{{ server_nexcessrepo_mirror }}/nexcess/RPM-GPG-KEY-NEXCESS"
+    state: present
+  ignore_errors: "{{ ansible_check_mode }}"

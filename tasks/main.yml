@@ -3,6 +3,9 @@
 - include: epel-override.yml
   when: server_epel_override
 
+- include: nexcess-repo.yml
+  when: server_nexcessrepo_install
+
 - name: Set the Hostname
   hostname:
     name="{{ inventory_hostname }}"
@@ -33,6 +36,19 @@
   tags:
     - packages
     - extras
+
+- name: Install Nexcess packages
+  yum:
+    name="{{ item }}"
+    state="present"
+    enablerepo="nexcess,epel,base,updates,extras"
+    skip_broken="yes"
+    update_cache="yes"
+  with_items: "{{ server_nexcessrepo_packages }}"
+  when: server_nexcessrepo_install
+  tags:
+    - packages
+    - nexcess-repo
 
 - name: Install shyaml
   pip:
