@@ -32,6 +32,8 @@ firewall_v4_default_rules:
     - "-A INPUT -p tcp -s {{ hostvars[inventory_hostname]['nexcess_firewall::cidr_blocks'].office_and_vpn | default(['0.0.0.0'], true) | join(',') }} --dport ssh -j ACCEPT"
     - "-A INPUT -p tcp -s {{ hostvars[inventory_hostname]['nexcess_firewall::cidr_blocks'].login_servers | default(['0.0.0.0'], true) | join(',') }} --dport ssh -j ACCEPT"
     - "-A INPUT -p tcp -s {{ vagrant_hostv4 }} --dport ssh -j ACCEPT"
+  300 allow backup:
+    - "-A INPUT -p tcp -s {{ hostvars[inventory_hostname]['r1soft::agent::internal_ips'] | default(['127.0.0.1'], true) | join(',') }} --dport 1167 -j ACCEPT"
   999 drop everything:
     - "-P INPUT DROP"
 
