@@ -79,6 +79,18 @@
     - environment
     - mounts
 
+- name: Configure /proc with hidepid= in /etc/fstab
+  mount:
+    name: '/proc'
+    src: 'proc'
+    fstype: 'proc'
+    opts: 'defaults,nosuid,nodev,noexec,relatime,hidepid={{ server_proc_hidepid_level }},gid={{ server_proc_hidepid_group }}'
+    state: 'mounted'
+  when: (server_proc_hidepid and server_proc_hidepid_level and server_proc_hidepid_group)
+  tags:
+    - environment
+    - mounts
+
 - name: Turn Off Unused Services
   service:
     name="{{ item }}"
