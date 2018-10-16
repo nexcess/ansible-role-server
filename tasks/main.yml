@@ -64,7 +64,7 @@
   
 - name: 'Ensure mount point options'
   lineinfile:
-    path: /etc/fstab.test
+    path: /etc/fstab
     regexp: '^([^ ]+[ ]+\{{ item.point }}[ ]+[^ ]+[ ]+)([^ ]+)(.*)'
     line: '\1{{ item.opts }}\3'
     backrefs: yes
@@ -77,7 +77,7 @@
 
 - name: 'If mount point options changed, remount'
   command: mount -o remount {{ item.point }}
-  when: (fstab.changed and server_mount_opts and server_mount_remount)
+  when: (fstab.changed and server_mount_opts and server_mount_opts_remount)
   with_items: "{{ server_mount_opts }}"
   tags:
     - environment
