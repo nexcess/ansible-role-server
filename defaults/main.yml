@@ -129,6 +129,10 @@ server_bash_history: true
 server_proc_hidepid: false
 server_proc_hidepid_level: '1'
 server_proc_hidepid_group: 'nexcess-sshusers'
+server_mount_opts: []
+# server_mount_opts:
+#  - point: "/"
+#    opts: "defaults,noatime"
 
 # Firewall Defaults
 firewall_included: true
