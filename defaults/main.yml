@@ -133,6 +133,7 @@ server_mount_opts: []
 # server_mount_opts:
 #  - point: "/"
 #    opts: "defaults,noatime"
+server_mount_opts_remount: false
 
 # Firewall Defaults
 firewall_included: true
