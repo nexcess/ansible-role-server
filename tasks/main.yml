@@ -61,20 +61,24 @@
     - security
     - selinux
     - selinux-enforcing
-
-# gnarly regex looks for rootfs (of any fs type) that doesn't already
-#  have noatime appended, special regex stuff is:
-#   \s is any whitespace char
-#   \S is any non-whitespace char
-#   \w is any alphanumeric + _ (underscore)
-#   (?!thing) is a negative lookahead assertion
-#  this assumes that "defaults" is always the first mount option for rootfs
-- name: Set noatime on filesystems
+  
+- name: 'Ensure mount point options'
   lineinfile:
-    dest="/etc/fstab"
-    regexp="^([^#].*\s+/\s+\w+\s+)(defaults(?!\S+noatime)\S+)(\s+.*)$"
-    line="\1\2,noatime\3"
-    backrefs="yes"
+    path: /etc/fstab.test
+    regexp: '^([^ ]+[ ]+\{{ item.point }}[ ]+[^ ]+[ ]+)([^ ]+)(.*)'
+    line: '\1{{ item.opts }}\3'
+    backrefs: yes
+  when: server_mount_opts
+  with_items: "{{ server_mount_opts }}"
+  register: fstab
+  tags:
+    - environment
+    - mounts
+
+- name: 'If mount point options changed, remount'
+  command: mount -o remount {{ item.point }}
+  when: (fstab.changed and server_mount_opts and server_mount_remount)
+  with_items: "{{ server_mount_opts }}"
   tags:
     - environment
     - mounts
