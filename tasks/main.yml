@@ -83,7 +83,7 @@
     - environment
     - mounts
 
-- name: Configure /proc with hidepid= in /etc/fstab
+- name: Configure /proc with hidepid in /etc/fstab
   mount:
     name: '/proc'
     src: 'proc'
