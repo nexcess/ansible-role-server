@@ -132,6 +132,7 @@
     - kernel-udev
 
 - include: hosts.yml
+  when: hosts_file_included
   tags:
     - environment
     - hosts

@@ -7,6 +7,7 @@ backnet_host: "{{ inventory_hostname }}-int"
 kernelcare_included: false
 epel_included: true
 remi_included: true
+hosts_file_included: true
 
 # Server Defaults
 server_update: true
