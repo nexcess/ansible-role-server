@@ -25,7 +25,6 @@
   yum:
     name="{{ item }}"
     state="present"
-    disablerepo="*"
     enablerepo="epel,remi,base,updates,extras"
     skip_broken=yes
     update_cache=yes
