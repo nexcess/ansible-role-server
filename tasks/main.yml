@@ -11,15 +11,6 @@
     - environment
     - hostname
 
-- name: Set the Global PATH
-  lineinfile:
-    dest="/etc/environment"
-    state="present"
-    line="PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
-  tags:
-    - environment
-    - paths
-
 - name: Install Extras
   yum:
     name="{{ item }}"
