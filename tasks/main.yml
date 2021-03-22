@@ -15,8 +15,7 @@
   lineinfile:
     dest="/etc/environment"
     state="present"
-    line="PATH={{ server_extra_path + ":" }}/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
-  when: server_extra_path is defined and server_extra_path|length > 0
+    line="PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
   tags:
     - environment
     - paths
