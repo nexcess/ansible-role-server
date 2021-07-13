@@ -27,6 +27,7 @@ server_packages:
   - "bind-utils"
   - "bridge-utils"
   - "bzip2"
+  - "deltarpm"
   - "ed"
   - "emacs-nox"
   - "git"
