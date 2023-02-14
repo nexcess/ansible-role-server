@@ -27,4 +27,4 @@
     value="https://{{ server_epel_mirror }}/epel/$releasever/$basearch/"
 
 - name: Clearing yum cache after switching BaseURL
-  command: /usr/bin/yum clean expire-cache
+  command: /usr/bin/yum clean all
