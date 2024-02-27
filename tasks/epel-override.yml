@@ -19,12 +19,25 @@
     server_epel_mirror="imirror.us-midwest-1.nexcess.net"
   when: nex_env_target is defined and nex_env_target == 'jarvis'
 
-- name: Add in the Nexcess BaseURL
+- name: Add in the Nexcess BaseURL (CentOS 7)
   ini_file:
     path="{{ epel_repofile_path }}"
     section="epel"
     option="baseurl"
     value="https://{{ server_epel_mirror }}/epel/$releasever/$basearch/"
+  when:
+    - ansible_distribution == 'CentOS'
+    - ansible_distribution_major_version == '7'
+
+- name: Add in the Nexcess BaseURL (Rocky Linux 9)
+  ini_file:
+    path="{{ epel_repofile_path }}"
+    section="epel"
+    option="baseurl"
+    value="https://{{ server_epel_mirror }}/epel/$releasever/Everything/$basearch/"
+  when:
+    - ansible_distribution == 'Rocky'
+    - ansible_distribution_major_version == '9'
 
 - name: Clearing yum cache after switching BaseURL
   command: /usr/bin/yum clean all
