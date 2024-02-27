@@ -22,43 +22,6 @@ server_update: true
 server_selinux_enforcing: false
 server_epel_override: true
 server_epel_mirror: "mirror.us-midwest-1.nexcess.net"
-server_packages:
-  - "bash-completion"
-  - "bind-utils"
-  - "bridge-utils"
-  - "bzip2"
-  - "deltarpm"
-  - "ed"
-  - "emacs-nox"
-  - "git"
-  - "iptables"
-  - "iptables-services"
-  - "iputils"
-  - "jq"
-  - "libselinux-python"
-  - "lsof"
-  - "lynx"
-  - "mailx"
-  - "mlocate"
-  - "nc"
-  - "net-tools"
-  - "pigz"
-  - "policycoreutils-python"
-  - "python-devel"
-  - "rsync"
-  - "screen"
-  - "selinux-policy-targeted"
-  - "setroubleshoot-server"
-  - "strace"
-  - "sudo"
-  - "tcpdump"
-  - "telnet"
-  - "unzip"
-  - "vim"
-  - "bind-utils"
-  - "s3cmd"
-  - "python-pip"
-server_extra_packages: []
 server_services_unused: []
 server_adjust_limits: true
 server_pam:
