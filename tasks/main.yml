@@ -11,25 +11,6 @@
     - environment
     - hostname
 
-- name: Install Extras
-  yum:
-    name="{{ item }}"
-    state="present"
-    enablerepo="epel,remi,base,updates,extras"
-    skip_broken=yes
-    update_cache=yes
-  with_items: "{{ server_packages + server_extra_packages }}"
-  tags:
-    - packages
-    - extras
-
-- name: Install shyaml
-  pip:
-    name="shyaml"
-  tags:
-    - packages
-    - extras
-
 - name: Set SELinux Enforcing
   selinux:
     policy="targeted"
