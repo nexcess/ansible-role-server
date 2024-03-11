@@ -20,9 +20,6 @@ dependencies:
   - name: "nexcess.repo-remi"
     src: "https://github.com/nexcess/ansible-role-repo-remi.git"
     when: remi_included
-  - name: "nexcess.ntp"
-    src: "https://github.com/nexcess/ansible-role-ntp.git"
-    when: ntp_included
   - name: "nexcess.kernelcare"
     src: "https://github.com/nexcess/ansible-role-kernelcare.git"
     when:
